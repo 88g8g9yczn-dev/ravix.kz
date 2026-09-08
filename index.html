@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVIX Activation — Русификация и Казахизация авто</title>
+    <title>RAVIX Activation — Локализация авто в Казахстане</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         body { background-color: #0f172a; color: #f8fafc; padding: 20px; line-height: 1.5; }
-        .header { text-align: center; margin-bottom: 30px; padding-top: 10px; }
+        .header { text-align: center; margin-bottom: 25px; padding-top: 10px; }
         .logo { font-size: 28px; font-weight: 800; color: #38bdf8; letter-spacing: 1px; }
-        .subtitle { color: #94a3b8; font-size: 14px; margin-top: 5px; }
+        .subtitle { color: #94a3b8; font-size: 13px; margin-top: 5px; }
         .card { background: #1e293b; border-radius: 16px; padding: 20px; margin-bottom: 20px; border: 1px solid #334155; }
         h2 { font-size: 18px; margin-bottom: 15px; color: #f1f5f9; }
-        label { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        label { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
         select, input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; font-size: 15px; margin-bottom: 15px; outline: none; }
         select:focus, input:focus { border-color: #38bdf8; }
-        .badge { display: inline-block; background: #0284c7; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 600; margin-left: 5px; }
-        .btn-submit { width: 100%; padding: 14px; border-radius: 10px; border: none; background: #2563eb; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; }
-        .btn-submit:active { background: #1d4ed8; }
-        .features { margin-top: 10px; }
+        .price-box { background: #0284c7; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 15px; }
+        .price-title { font-size: 12px; text-transform: uppercase; opacity: 0.9; }
+        .price-value { font-size: 24px; font-weight: 800; margin-top: 2px; }
+        .btn-submit { width: 100%; padding: 14px; border-radius: 10px; border: none; background: #22c55e; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; }
+        .btn-submit:active { background: #16a34a; }
         .feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #cbd5e1; margin-bottom: 10px; }
     </style>
 </head>
@@ -30,11 +31,11 @@
     </div>
 
     <div class="card">
-        <h2>Подбор прошивки</h2>
+        <h2>Калькулятор активации</h2>
         
-        <label>Марка автомобиля</label>
-        <select id="brand">
-            <option value="">Выберите марку</option>
+        <label>1. Марка автомобиля</label>
+        <select id="brand" onchange="updateModels()">
+            <option value="">-- Выберите марку --</option>
             <option value="changan">Changan</option>
             <option value="chery">Chery</option>
             <option value="haval">Haval</option>
@@ -43,27 +44,109 @@
             <option value="jac">JAC</option>
             <option value="byd">BYD</option>
         </select>
+    
 
-        <label>Пакет локализации</label>
-        <select id="lang">
-            <option value="ru">Русский язык</option>
-            <option value="kz">Казахский язык + Голосовой помощник 🇰🇿</option>
-            <option value="full">Полный пакет (RU + KZ + Голос)</option>
+        <label>2. Модель</label>
+        <select id="model" disabled onchange="calculatePrice()">
+            <option value="">-- Сначала выберите марку --</option>
         </select>
 
-        <label>VIN-код автомобиля</label>
-        <input type="text" placeholder="Например: LKG1234567890..." maxlength="17">
+        <label>3. Пакет локализации</label>
+        <select id="package" onchange="calculatePrice()">
+            <option value="full">Полный пакет (RU + KZ + Голос 🇰🇿)</option>
+            <option value="ru">Только Русский язык</option>
+            <option value="kz">Только Казахский + Голос 🇰🇿</option>
+        </select>
 
-        <button class="btn-submit">Рассчитать стоимость</button>
+        <label>4. VIN-код (для привязки лицензии)</label>
+        <input type="text" id="vin" placeholder="Например: LKG1234567890..." maxlength="17">
+
+        <div class="price-box">
+            <div class="price-title">Итоговая стоимость</div>
+            <div class="price-value" id="priceDisplay">0 ₸</div>
+        </div>
+
+        <button class="btn-submit" onclick="submitOrder()">Заказать активацию</button>
     </div>
 
-    <div class="card features">
+    <div class="card">
         <h2>Преимущества RAVIX</h2>
         <div class="feature-item">✓ Полный казахский интерфейс и озвучка</div>
         <div class="feature-item">✓ Защита лицензии по VIN + Device ID</div>
-        <div class="feature-item">✓ Самостоятельная установка или у мастера</div>
-        <div class="feature-item">✓ Быстрая оплата через Kaspi Pay</div>
+        <div class="feature-item">✓ Дистанционная активация за 10 минут</div>
+        <div class="feature-item">✓ Официальная гарантия и поддержка</div>
     </div>
+
+    <script>
+        const carData = {
+            changan: { models: ["UNI-K", "UNI-V", "CS55 Plus", "CS75 Plus"], basePrice: 45000 },
+            chery: { models: ["Tiggo 7 Pro", "Tiggo 8 Pro Max", "Arrizo 8"], basePrice: 40000 },
+            haval: { models: ["Jolion", "F7x", "Dargo", "H9"], basePrice: 35000 },
+            jetour: { models: ["Dashing", "X70 Plus", "T2"], basePrice: 42000 },
+            geely: { models: ["Monjaro", "Tugella", "Coolray"], basePrice: 50000 },
+            jac: { models: ["JS4", "J7", "JS6"], basePrice: 35000 },
+            byd: { models: ["Song Plus", "Han", "Tang", "Chazor"], basePrice: 55000 }
+        };
+
+        function updateModels() {
+            const brandSelect = document.getElementById('brand');
+            const modelSelect = document.getElementById('model');
+            const selectedBrand = brandSelect.value;
+
+            modelSelect.innerHTML = '<option value="">-- Выберите модель --</option>';
+
+            if (selectedBrand && carData[selectedBrand]) {
+                modelSelect.disabled = false;
+                carData[selectedBrand].models.forEach(model => {
+                    const opt = document.createElement('option');
+                    opt.value = model;
+                    opt.textContent = model;
+                    modelSelect.appendChild(opt);
+                });
+            } else {
+                modelSelect.disabled = true;
+            }
+            calculatePrice();
+        }
+
+        function calculatePrice() {
+            const brandSelect = document.getElementById('brand').value;
+            const modelSelect = document.getElementById('model').value;
+            const packageSelect = document.getElementById('package').value;
+            const priceDisplay = document.getElementById('priceDisplay');
+
+            if (!brandSelect || !modelSelect) {
+                priceDisplay.textContent = '0 ₸';
+                return;
+            }
+
+            let price = carData[brandSelect].basePrice;
+
+            if (packageSelect === 'ru') price -= 5000;
+            if (packageSelect === 'kz') price -= 5000;
+
+            priceDisplay.textContent = price.toLocaleString('ru-RU') + ' ₸';
+        }
+
+        function submitOrder() {
+            const brand = document.getElementById('brand').value;
+            const model = document.getElementById('model').value;
+            const vin = document.getElementById('vin').value;
+
+            if (!brand || !model) {
+                alert('Пожалуйста, выберите марку и модель автомобиля!');
+                return;
+            }
+            if (vin.length < 11) {
+                alert('Пожалуйста, введите корректный VIN-код!');
+                return;
+            }
+
+            alert('Заявка принята! Переходим к интеграции оплаты.');
+        }
+    </script>
 
 </body>
 </html>
+
+

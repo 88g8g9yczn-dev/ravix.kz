@@ -24,7 +24,7 @@
         .price-title { font-size: 11px; text-transform: uppercase; opacity: 0.9; letter-spacing: 0.5px; }
         .price-value { font-size: 26px; font-weight: 800; margin-top: 2px; }
         
-        .btn-pay { width: 100%; padding: 15px; border-radius: 12px; border: none; background: #f2522e; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+        .btn-pay { width: 100%; padding: 15px; border-radius: 12px; border: none; background: #f2522e; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; text-decoration: none; }
         .btn-pay:hover { background: #dc3812; }
         .btn-pay:active { transform: scale(0.99); }
         
@@ -43,6 +43,9 @@
         .kaspi-phone { font-size: 20px; font-weight: 800; color: #38bdf8; margin: 5px 0; }
         .kaspi-recipient { font-size: 14px; font-weight: 600; color: #f2522e; }
         .kaspi-note { font-size: 11px; color: #94a3b8; margin-top: 6px; }
+
+        .btn-kaspi-app { width: 100%; padding: 14px; border-radius: 10px; border: none; background: #f2522e; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 12px; display: block; text-align: center; text-decoration: none; }
+        .btn-whatsapp { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #25d366; background: transparent; color: #25d366; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px; display: block; text-align: center; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -96,7 +99,7 @@
             </div>
 
             <button class="btn-pay" onclick="openPaymentModal()">
-                <span>Оплатить через Kaspi</span>
+                <span>Перейти к оплате</span>
             </button>
         </div>
 
@@ -114,7 +117,7 @@
     <div class="modal" id="payModal">
         <div class="modal-content">
             <span class="close-btn" onclick="closePaymentModal()">&times;</span>
-            <h2 style="margin-bottom: 15px;">Оплата заказа</h2>
+            <h2 style="margin-bottom: 15px;">Оформление и оплата</h2>
             
             <div class="summary-row"><span>Автомобиль:</span> <strong id="summaryCar">-</strong></div>
             <div class="summary-row"><span>Пакет:</span> <strong id="summaryPkg">-</strong></div>
@@ -122,13 +125,21 @@
             <div class="summary-total"><span>К оплате:</span> <span id="summaryPrice" style="color: #38bdf8;">0 ₸</span></div>
 
             <div class="kaspi-info-box">
-                <div style="font-size: 12px; color: #cbd5e1;">Реквизиты для перевода Kaspi:</div>
+                <div style="font-size: 12px; color: #cbd5e1;">Перевод на Kaspi:</div>
                 <div class="kaspi-phone">+7 707 721 34 60</div>
                 <div class="kaspi-recipient">Получатель: Равиль Д.</div>
-                <div class="kaspi-note">В комментарии к переводу укажите ваш **VIN-код**</div>
+                <div class="kaspi-note">В комментарии обязательно укажите Ваш VIN-код</div>
             </div>
 
-            <button class="btn-pay" style="margin-top: 15px;" onclick="closePaymentModal()">Понятно, закрыть окно</button>
+            <!-- Прямая ссылка на переход в Kaspi -->
+            <a href="https://kaspi.kz/pay" target="_blank" class="btn-kaspi-app">
+                Открыть Kaspi.kz
+            </a>
+
+            <!-- Отправка деталей заказа мастеру в WhatsApp -->
+            <a id="waPayBtn" href="#" target="_blank" class="btn-whatsapp">
+                Отправить чек / Подтвердить в WhatsApp
+            </a>
         </div>
     </div>
 
@@ -206,11 +217,18 @@
             }
 
             const currentPrice = calculatePrice();
+            const carName = `${brandSelect.options[brandSelect.selectedIndex].text} ${modelSelect.value}`;
+            const pkgName = packageSelect.options[packageSelect.selectedIndex].text;
+            const vinUpper = vinInput.toUpperCase();
 
-            document.getElementById('summaryCar').textContent = `${brandSelect.options[brandSelect.selectedIndex].text} ${modelSelect.value}`;
-            document.getElementById('summaryPkg').textContent = packageSelect.options[packageSelect.selectedIndex].text;
-            document.getElementById('summaryVin').textContent = vinInput.toUpperCase();
+            document.getElementById('summaryCar').textContent = carName;
+            document.getElementById('summaryPkg').textContent = pkgName;
+            document.getElementById('summaryVin').textContent = vinUpper;
             document.getElementById('summaryPrice').textContent = currentPrice.toLocaleString('ru-RU') + ' ₸';
+
+            // Генерируем ссылку на WhatsApp с готовым сообщением заказа
+            const waText = encodeURIComponent(`Здравствуйте! Хочу заказать активацию RAVIX.\n\n🚗 Авто: ${carName}\n📦 Пакет: ${pkgName}\n🔑 VIN: ${vinUpper}\n💰 Сумма: ${currentPrice.toLocaleString('ru-RU')} ₸`);
+            document.getElementById('waPayBtn').href = `https://wa.me/77077213460?text=${waText}`;
 
             document.getElementById('payModal').style.display = 'flex';
         }

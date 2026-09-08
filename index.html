@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>RAVIX.KZ — Активация автомобилей</title>
+<title>RAVIX.KZ — Локализация и активация авто в Казахстане</title>
 
 <style>
 * {
@@ -35,22 +34,18 @@ a {
 }
 
 /* HEADER */
-
 header {
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-
-    background: rgba(7,8,10,.75);
+    background: rgba(7,8,10,.85);
     backdrop-filter: blur(20px);
-
     border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 .nav {
     height: 75px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -78,77 +73,58 @@ header {
 }
 
 .nav-button {
-    background: white;
+    background: #d9ff38;
     color: black;
-
     padding: 11px 18px;
     border-radius: 12px;
-
     font-weight: bold;
+    transition: .2s;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
 }
 
 /* HERO */
-
 .hero {
     min-height: 100vh;
-
     display: flex;
     align-items: center;
-
     padding-top: 100px;
-
     position: relative;
     overflow: hidden;
 }
 
 .hero::after {
     content: "";
-
     position: absolute;
-
     width: 700px;
     height: 700px;
-
     right: -250px;
     top: -200px;
-
-    background: radial-gradient(
-        circle,
-        rgba(217,255,56,.15),
-        transparent 65%
-    );
-
+    background: radial-gradient(circle, rgba(217,255,56,.15), transparent 65%);
     pointer-events: none;
 }
 
 .badge {
     display: inline-block;
-
     padding: 8px 13px;
-
     border: 1px solid rgba(255,255,255,.1);
     border-radius: 30px;
-
     color: #aaa;
-
     font-size: 13px;
 }
 
 .badge::before {
     content: "●";
-
     color: #d9ff38;
-
     margin-right: 8px;
 }
 
 .hero h1 {
-    font-size: clamp(55px,8vw,100px);
-
-    line-height: .9;
-
-    letter-spacing: -5px;
-
+    font-size: clamp(45px, 7vw, 90px);
+    line-height: .95;
+    letter-spacing: -3px;
     margin-top: 25px;
 }
 
@@ -158,36 +134,26 @@ header {
 
 .hero-text {
     max-width: 650px;
-
     margin-top: 30px;
-
     color: #8e9299;
-
     font-size: 18px;
-
     line-height: 1.6;
 }
 
 .buttons {
     display: flex;
-
     gap: 12px;
-
     margin-top: 30px;
 }
 
 .button {
     padding: 15px 22px;
-
     border-radius: 14px;
-
     font-weight: bold;
-
     border: none;
-
     cursor: pointer;
-
     transition: .2s;
+    text-align: center;
 }
 
 .button:hover {
@@ -202,29 +168,21 @@ header {
 .secondary {
     background: #15171b;
     color: white;
-
     border: 1px solid rgba(255,255,255,.08);
 }
 
 /* STATS */
-
 .stats {
     display: grid;
-
     grid-template-columns: repeat(4,1fr);
-
     gap: 12px;
-
     margin-top: 70px;
 }
 
 .stat {
     padding: 20px;
-
     border-radius: 18px;
-
     background: rgba(255,255,255,.025);
-
     border: 1px solid rgba(255,255,255,.08);
 }
 
@@ -234,71 +192,48 @@ header {
 
 .stat p {
     color: #777;
-
     margin-top: 5px;
-
     font-size: 13px;
 }
 
 /* SECTION */
-
 section {
     padding: 100px 0;
 }
 
 .section-title {
     font-size: 45px;
-
     letter-spacing: -2px;
-
     margin-bottom: 12px;
 }
 
 .section-description {
     color: #858991;
-
     max-width: 550px;
-
     margin-bottom: 40px;
 }
 
 /* BRANDS */
-
 .brands {
     display: grid;
-
     grid-template-columns: repeat(4,1fr);
-
     gap: 12px;
 }
 
 .brand {
-    min-height: 150px;
-
+    min-height: 140px;
     padding: 25px;
-
     border-radius: 22px;
-
-    background: linear-gradient(
-        145deg,
-        #121419,
-        #0c0e11
-    );
-
+    background: linear-gradient(145deg, #121419, #0c0e11);
     border: 1px solid rgba(255,255,255,.08);
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: space-between;
-
     transition: .25s;
 }
 
 .brand:hover {
     transform: translateY(-5px);
-
     border-color: rgba(217,255,56,.4);
 }
 
@@ -308,25 +243,17 @@ section {
 
 .brand p {
     color: #777;
-
     font-size: 13px;
 }
 
 /* CALCULATOR */
-
 .calculator {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 15px;
-
     padding: 15px;
-
     background: #111318;
-
     border: 1px solid rgba(255,255,255,.08);
-
     border-radius: 28px;
 }
 
@@ -336,65 +263,45 @@ section {
 
 .form h3 {
     font-size: 30px;
-
     margin-bottom: 10px;
 }
 
 .form p {
     color: #777;
-
     margin-bottom: 20px;
 }
 
 label {
     display: block;
-
     color: #999;
-
     font-size: 13px;
-
     margin-top: 17px;
-
     margin-bottom: 7px;
 }
 
-input,
-select {
+input, select {
     width: 100%;
-
     padding: 15px;
-
     background: #08090c;
-
     border: 1px solid rgba(255,255,255,.1);
-
     color: white;
-
     border-radius: 13px;
-
     outline: none;
+    font-size: 15px;
 }
 
-input:focus,
-select:focus {
+input:focus, select:focus {
     border-color: #d9ff38;
 }
 
-/* PRICE */
-
+/* PRICE CARD */
 .price-card {
     padding: 30px;
-
     border-radius: 22px;
-
     background: #08090b;
-
     border: 1px solid rgba(255,255,255,.08);
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: space-between;
 }
 
@@ -403,108 +310,82 @@ select:focus {
 }
 
 .price {
-    font-size: 55px;
-
+    font-size: 50px;
     font-weight: 900;
-
-    letter-spacing: -3px;
-
+    letter-spacing: -2px;
     margin-top: 15px;
 }
 
 .price span {
     font-size: 18px;
-
     color: #777;
-
     letter-spacing: 0;
 }
 
 .features {
     margin-top: 25px;
-
     display: grid;
-
     gap: 12px;
-
     color: #aaa;
+    font-size: 14px;
 }
 
 .features div::before {
     content: "✓";
-
     color: #d9ff38;
-
     margin-right: 10px;
 }
 
 /* PROCESS */
-
 .process {
     display: grid;
-
     grid-template-columns: repeat(3,1fr);
-
     gap: 12px;
 }
 
 .step {
     padding: 28px;
-
     background: #101216;
-
     border: 1px solid rgba(255,255,255,.08);
-
     border-radius: 22px;
 }
 
 .step-number {
     color: #d9ff38;
-
     font-size: 12px;
-
     font-weight: bold;
 }
 
 .step h3 {
     margin-top: 40px;
-
     font-size: 23px;
 }
 
 .step p {
     color: #777;
-
     margin-top: 10px;
-
     line-height: 1.5;
 }
 
 /* FAQ */
-
 .faq {
     max-width: 850px;
 }
 
 details {
     padding: 20px 0;
-
     border-top: 1px solid rgba(255,255,255,.08);
 }
 
 summary {
     cursor: pointer;
-
     font-weight: bold;
-
     display: flex;
-
     justify-content: space-between;
 }
 
 summary::after {
     content: "+";
-
     color: #d9ff38;
 }
 
@@ -514,83 +395,53 @@ details[open] summary::after {
 
 details p {
     color: #777;
-
     margin-top: 12px;
-
     line-height: 1.5;
 }
 
 /* CTA */
-
 .cta {
     padding: 70px 30px;
-
     border-radius: 30px;
-
     text-align: center;
-
-    background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(217,255,56,.12),
-            transparent 35%
-        ),
-        #111318;
-
+    background: radial-gradient(circle at 80% 20%, rgba(217,255,56,.12), transparent 35%), #111318;
     border: 1px solid rgba(255,255,255,.08);
 }
 
 .cta h2 {
     font-size: 48px;
-
     letter-spacing: -2px;
 }
 
 .cta p {
     max-width: 600px;
-
     margin: 15px auto 25px;
-
     color: #777;
 }
 
 /* FOOTER */
-
 footer {
     padding: 35px 0;
-
     border-top: 1px solid rgba(255,255,255,.08);
-
     color: #666;
-
     font-size: 13px;
 }
 
 .footer {
     display: flex;
-
     justify-content: space-between;
 }
 
 /* MODAL */
-
 .modal {
     position: fixed;
-
     inset: 0;
-
-    background: rgba(0,0,0,.8);
-
+    background: rgba(0,0,0,.85);
     backdrop-filter: blur(10px);
-
     display: none;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 20px;
-
     z-index: 2000;
 }
 
@@ -600,29 +451,19 @@ footer {
 
 .modal-box {
     width: 100%;
-
     max-width: 500px;
-
     padding: 30px;
-
     border-radius: 25px;
-
     background: #111318;
-
     border: 1px solid rgba(255,255,255,.1);
 }
 
 .close {
     float: right;
-
     background: none;
-
     border: none;
-
     color: #888;
-
     font-size: 25px;
-
     cursor: pointer;
 }
 
@@ -632,72 +473,29 @@ footer {
 
 .modal-box p {
     color: #777;
-
     margin-top: 8px;
+    font-size: 14px;
 }
 
 /* MOBILE */
-
 @media(max-width:800px) {
-
-    .nav-links {
-        display: none;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .brands {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .calculator {
-        grid-template-columns: 1fr;
-    }
-
-    .process {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        letter-spacing: -3px;
-    }
-
-    .cta h2 {
-        font-size: 36px;
-    }
+    .nav-links { display: none; }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .brands { grid-template-columns: repeat(2,1fr); }
+    .calculator { grid-template-columns: 1fr; }
+    .process { grid-template-columns: 1fr; }
+    .hero h1 { letter-spacing: -2px; }
+    .cta h2 { font-size: 36px; }
 }
 
 @media(max-width:500px) {
-
-    .container {
-        width: 92%;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .brands {
-        grid-template-columns: 1fr;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
-
-    .button {
-        text-align: center;
-    }
-
-    .hero {
-        padding-top: 120px;
-    }
-
-    section {
-        padding: 70px 0;
-    }
+    .container { width: 92%; }
+    .stats { grid-template-columns: 1fr; }
+    .brands { grid-template-columns: 1fr; }
+    .buttons { flex-direction: column; }
+    .button { text-align: center; }
+    .hero { padding-top: 120px; }
+    section { padding: 70px 0; }
 }
 </style>
 </head>
@@ -705,805 +503,345 @@ footer {
 <body>
 
 <header>
-
-<div class="container nav">
-
-<a href="#" class="logo">
-RAVI<span>X</span>
-</a>
-
-<nav class="nav-links">
-
-<a href="#services">Услуги</a>
-
-<a href="#calculator">Стоимость</a>
-
-<a href="#process">Как работает</a>
-
-<a href="#faq">FAQ</a>
-
-</nav>
-
-<a href="#calculator" class="nav-button">
-Рассчитать
-</a>
-
-</div>
-
+    <div class="container nav">
+        <a href="#" class="logo">RAVI<span>X</span></a>
+        <nav class="nav-links">
+            <a href="#services">Услуги</a>
+            <a href="#calculator">Стоимость</a>
+            <a href="#process">Как работает</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <a href="#calculator" class="nav-button">Рассчитать</a>
+    </div>
 </header>
 
-
 <main>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="container">
-
-<div class="badge">
-Сервис локализации автомобилей
-</div>
-
-<h1>
-Ваш автомобиль.<br>
-<span>Ваш язык.</span>
-</h1>
-
-<p class="hero-text">
-RAVIX — современный сервис активации и локализации
-мультимедийных систем автомобилей. Работаем с конкретным
-VIN и подбираем решение под ваш автомобиль.
-</p>
-
-<div class="buttons">
-
-<a href="#calculator" class="button primary">
-Рассчитать стоимость
-</a>
-
-<a href="#process" class="button secondary">
-Как это работает
-</a>
-
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-<strong>7+</strong>
-<p>марок автомобилей</p>
-</div>
-
-<div class="stat">
-<strong>VIN</strong>
-<p>индивидуальная активация</p>
-</div>
-
-<div class="stat">
-<strong>24/7</strong>
-<p>приём заявок</p>
-</div>
-
-<div class="stat">
-<strong>RU / KZ</strong>
-<p>локализация интерфейса</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SERVICES -->
-
-<section id="services">
-
-<div class="container">
-
-<h2 class="section-title">
-Поддерживаемые марки
-</h2>
-
-<p class="section-description">
-Выберите автомобиль. Стоимость зависит от марки,
-модели и выбранного пакета.
-</p>
-
-
-<div class="brands">
-
-<div class="brand">
-<h3>CHANGAN</h3>
-<p>Локализация мультимедиа</p>
-</div>
-
-<div class="brand">
-<h3>CHERY</h3>
-<p>Активация функций</p>
-</div>
-
-<div class="brand">
-<h3>HAVAL</h3>
-<p>Язык и интерфейс</p>
-</div>
-
-<div class="brand">
-<h3>JETOUR</h3>
-<p>Локализация системы</p>
-</div>
-
-<div class="brand">
-<h3>GEELY</h3>
-<p>Активация ПО</p>
-</div>
-
-<div class="brand">
-<h3>JAC</h3>
-<p>Русский / казахский</p>
-</div>
-
-<div class="brand">
-<h3>BYD</h3>
-<p>Мультимедиа и функции</p>
-</div>
-
-<div class="brand">
-<h3>MORE</h3>
-<p>Список расширяется</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CALCULATOR -->
-
-<section id="calculator">
-
-<div class="container">
-
-<h2 class="section-title">
-Рассчитать заказ
-</h2>
-
-<p class="section-description">
-Укажите автомобиль и пакет. Система покажет
-ориентировочную стоимость.
-</p>
-
-
-<div class="calculator">
-
-<div class="form">
-
-<h3>
-Конфигуратор
-</h3>
-
-<p>
-Заполните несколько полей.
-</p>
-
-
-<label>
-Марка
-</label>
-
-<select id="brand">
-
-<option value="0">
-Выберите марку
-</option>
-
-<option value="25000">
-CHANGAN
-</option>
-
-<option value="28000">
-CHERY
-</option>
-
-<option value="30000">
-HAVAL
-</option>
-
-<option value="27000">
-JETOUR
-</option>
-
-<option value="32000">
-GEELY
-</option>
-
-<option value="24000">
-JAC
-</option>
-
-<option value="35000">
-BYD
-</option>
-
-</select>
-
-
-<label>
-Модель
-</label>
-
-<input
-id="model"
-placeholder="Например: Uni-V"
-/>
-
-
-<label>
-Пакет
-</label>
-
-<select id="package">
-
-<option value="0">
-Выберите пакет
-</option>
-
-<option value="0">
-RU — русский язык
-</option>
-
-<option value="5000">
-KZ — русский + казахский
-</option>
-
-<option value="10000">
-FULL — расширенный
-</option>
-
-</select>
-
-
-<label>
-VIN
-</label>
-
-<input
-id="vin"
-maxlength="17"
-placeholder="17 символов VIN"
-/>
-
-</div>
-
-
-<div class="price-card">
-
-<div>
-
-<div class="price-title">
-Ориентировочная стоимость
-</div>
-
-<div class="price" id="price">
-—
-<span>₸</span>
-</div>
-
-
-<div class="features">
-
-<div>
-Проверка конфигурации
-</div>
-
-<div>
-Работа с конкретным VIN
-</div>
-
-<div>
-Поддержка после заказа
-</div>
-
-</div>
-
-</div>
-
-
-<button
-class="button primary"
-id="orderButton"
->
-Оформить заявку
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PROCESS -->
-
-<section id="process">
-
-<div class="container">
-
-<h2 class="section-title">
-Как это работает
-</h2>
-
-<p class="section-description">
-Всего три шага от выбора автомобиля до активации.
-</p>
-
-
-<div class="process">
-
-<div class="step">
-
-<div class="step-number">
-01 / ЗАКАЗ
-</div>
-
-<h3>
-Выбираете автомобиль
-</h3>
-
-<p>
-Указываете марку, модель,
-пакет и VIN автомобиля.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="step-number">
-02 / ПРОВЕРКА
-</div>
-
-<h3>
-Проверяем VIN
-</h3>
-
-<p>
-Проверяем совместимость
-и подтверждаем стоимость.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="step-number">
-03 / АКТИВАЦИЯ
-</div>
-
-<h3>
-Получаете результат
-</h3>
-
-<p>
-Получаете дальнейшие
-инструкции и поддержку.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- FAQ -->
-
-<section id="faq">
-
-<div class="container">
-
-<h2 class="section-title">
-FAQ
-</h2>
-
-<p class="section-description">
-Ответы на самые частые вопросы.
-</p>
-
-
-<div class="faq">
-
-<details>
-
-<summary>
-Что такое VIN?
-</summary>
-
-<p>
-VIN — уникальный 17-значный идентификатор автомобиля.
-Он используется для проверки совместимости.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Можно ли узнать цену заранее?
-</summary>
-
-<p>
-Да. Используйте конфигуратор выше.
-Финальная стоимость подтверждается после проверки VIN.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Подходит ли активация для любой модели?
-</summary>
-
-<p>
-Совместимость зависит от модели, года выпуска,
-мультимедиа и региона автомобиля.
-</p>
-
-</details>
-
-
-<details>
-
-<summary>
-Что происходит после заявки?
-</summary>
-
-<p>
-Менеджер связывается с клиентом и сообщает
-дальнейшие шаги.
-</p>
-
-</details>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CTA -->
-
-<section>
-
-<div class="container">
-
-<div class="cta">
-
-<h2>
-Готовы локализовать автомобиль?
-</h2>
-
-<p>
-Выберите конфигурацию и отправьте заявку.
-RAVIX начнёт с проверки вашего VIN.
-</p>
-
-<a
-href="#calculator"
-class="button primary"
->
-Начать сейчас
-</a>
-
-</div>
-
-</div>
-
-</section>
-
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">Сервис локализации автомобилей в РК</div>
+            <h1>Ваш автомобиль.<br><span>Ваш язык.</span></h1>
+            <p class="hero-text">
+                RAVIX — авто-платформа локализации и адаптации мультимедиа для китайских автомобилей. Русский и казахский интерфейсы, установка приложений и полная адаптация.
+            </p>
+
+            <div class="buttons">
+                <a href="#calculator" class="button primary">Рассчитать стоимость</a>
+                <a href="#process" class="button secondary">Как это работает</a>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <strong>7+</strong>
+                    <p>марок автомобилей</p>
+                </div>
+                <div class="stat">
+                    <strong>VIN</strong>
+                    <p>проверка привязки</p>
+                </div>
+                <div class="stat">
+                    <strong>24/7</strong>
+                    <p>онлайн приём заказов</p>
+                </div>
+                <div class="stat">
+                    <strong>KZ / RU</strong>
+                    <p>полная локализация</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Поддерживаемые марки</h2>
+            <p class="section-description">Поддерживаем самые популярные бренды китайского автопрома.</p>
+
+            <div class="brands">
+                <div class="brand">
+                    <h3>CHANGAN</h3>
+                    <p>Uni-K, Uni-V, CS55, CS75</p>
+                </div>
+                <div class="brand">
+                    <h3>CHERY</h3>
+                    <p>Tiggo 7/8/9 Pro, Arrizo</p>
+                </div>
+                <div class="brand">
+                    <h3>HAVAL</h3>
+                    <p>Jolion, Dargo, H6, F7</p>
+                </div>
+                <div class="brand">
+                    <h3>JETOUR</h3>
+                    <p>Dashing, X70, X90, T2</p>
+                </div>
+                <div class="brand">
+                    <h3>GEELY</h3>
+                    <p>Monjaro, Coolray, Tugella</p>
+                </div>
+                <div class="brand">
+                    <h3>JAC</h3>
+                    <p>JS4, JS6, J7</p>
+                </div>
+                <div class="brand">
+                    <h3>BYD</h3>
+                    <p>Song Plus, Han, Tang, Qin</p>
+                </div>
+                <div class="brand">
+                    <h3>MORE</h3>
+                    <p>Zeekr, Li Auto, Voyah</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="calculator">
+        <div class="container">
+            <h2 class="section-title">Рассчитать заказ</h2>
+            <p class="section-description">Выберите параметры автомобиля для расчета стоимости.</p>
+
+            <div class="calculator">
+                <div class="form">
+                    <h3>Конфигуратор</h3>
+                    <p>Заполните детали для формирования заявки.</p>
+
+                    <label>Марка автомобиля</label>
+                    <select id="brand">
+                        <option value="0">Выберите марку</option>
+                        <option value="25000">CHANGAN</option>
+                        <option value="28000">CHERY</option>
+                        <option value="30000">HAVAL</option>
+                        <option value="27000">JETOUR</option>
+                        <option value="32000">GEELY</option>
+                        <option value="24000">JAC</option>
+                        <option value="35000">BYD</option>
+                    </select>
+
+                    <label>Модель</label>
+                    <input id="model" placeholder="Например: Monjaro, Uni-V, Song Plus" />
+
+                    <label>Языковой пакет</label>
+                    <select id="package">
+                        <option value="0">RU — Русский язык</option>
+                        <option value="5000">KZ/RU — Русский + Казахский язык</option>
+                        <option value="10000">FULL — Языки + Приложения и Яндекс Навигатор</option>
+                    </select>
+
+                    <label>Формат работы</label>
+                    <select id="serviceType">
+                        <option value="online">Дистанционно (Файл + Пошаговая видеоинструкция)</option>
+                        <option value="offline">Запись в сервис (Прошивка мастером в боксе)</option>
+                    </select>
+
+                    <label>VIN-код автомобиля (17 символов)</label>
+                    <input id="vin" maxlength="17" placeholder="Например: L3EFH23..." />
+                </div>
+
+                <div class="price-card">
+                    <div>
+                        <div class="price-title">Ориентировочная стоимость</div>
+                        <div class="price" id="price">— <span>₸</span></div>
+
+                        <div class="features">
+                            <div>Проверка совместимости по VIN</div>
+                            <div>Полная адаптация под Казахстан</div>
+                            <div>Гарантия и персональное сопровождение</div>
+                        </div>
+                    </div>
+
+                    <button class="button primary" id="orderButton" style="width:100%; margin-top:20px;">
+                        Оформить заявку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+        <div class="container">
+            <h2 class="section-title">Как это работает</h2>
+            <p class="section-description">Три быстрых шага до готового интерфейса.</p>
+
+            <div class="process">
+                <div class="step">
+                    <div class="step-number">01 / ЗАКАЗ</div>
+                    <h3>Оформляете заявку</h3>
+                    <p>Заполняете марку, модель, VIN и предпочитаемый формат прошивки.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">02 / ПРОВЕРКА</div>
+                    <h3>Подтверждаем софт</h3>
+                    <p>Проверяем совместимость по VIN и подготавливаем языковой пакет.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">03 / ЛОКАЛИЗАЦИЯ</div>
+                    <h3>Активируете систему</h3>
+                    <p>Получаете готовые файлы с видеоинструкцией или приезжаете в сервис к мастеру.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <p class="section-description">Всё, что нужно знать перед прошивкой.</p>
+
+            <div class="faq">
+                <details>
+                    <summary>Зачем указывать VIN-код?</summary>
+                    <p>VIN необходим для точной проверки версии головного устройства и правильного подбора активации.</p>
+                </details>
+                <details>
+                    <summary>Есть ли адаптация на казахский язык?</summary>
+                    <p>Да! Мы предоставляем полноценные локализованные языковые пакеты с поддержкой казахского и русского языков.</p>
+                </details>
+                <details>
+                    <summary>Смогу ли я активировать систему сам дистанционно?</summary>
+                    <p>Да. Мы высылаем специальный архив и подробное пошаговое видео. Всё делается за 10–15 минут через обычную USB-флешку.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+        <div class="container">
+            <div class="cta">
+                <h2>Готовы перевести авто на ваш язык?</h2>
+                <p>Рассчитайте стоимость на сайте и отправьте заявку напрямую специалисту.</p>
+                <a href="#calculator" class="button primary">Начать сейчас</a>
+            </div>
+        </div>
+    </section>
 </main>
 
-
 <footer>
-
-<div class="container footer">
-
-<div>
-© 2026 RAVIX.KZ
-</div>
-
-<div>
-Активация • Локализация • Поддержка
-</div>
-
-</div>
-
+    <div class="container footer">
+        <div>© 2026 RAVIX.KZ</div>
+        <div>Активация • Локализация • Казахский и Русский язык</div>
+    </div>
 </footer>
 
-
 <!-- MODAL -->
-
 <div class="modal" id="modal">
+    <div class="modal-box">
+        <button class="close" id="close">×</button>
+        <h3>Заявка RAVIX</h3>
+        <p id="orderInfo">Укажите контактные данные.</p>
 
-<div class="modal-box">
+        <label>Ваше имя</label>
+        <input id="name" placeholder="Введите имя" />
 
-<button class="close" id="close">
-×
-</button>
+        <label>Телефон / WhatsApp</label>
+        <input id="phone" placeholder="+7 700 000 00 00" />
 
-<h3>
-Заявка RAVIX
-</h3>
-
-<p id="orderInfo">
-Заполните данные для связи.
-</p>
-
-
-<label>
-Имя
-</label>
-
-<input
-id="name"
-placeholder="Ваше имя"
-/>
-
-
-<label>
-Телефон / WhatsApp
-</label>
-
-<input
-id="phone"
-placeholder="+7 ___ ___ __ __"
-/>
-
-
-<button
-class="button primary"
-style="width:100%;margin-top:20px"
-id="send"
->
-Отправить заявку
-</button>
-
+        <button class="button primary" style="width:100%; margin-top:20px;" id="send">
+            Отправить в WhatsApp
+        </button>
+    </div>
 </div>
-
-</div>
-
 
 <script>
-
-const brand =
-document.getElementById("brand");
-
-const pack =
-document.getElementById("package");
-
-const price =
-document.getElementById("price");
-
-const model =
-document.getElementById("model");
-
-const vin =
-document.getElementById("vin");
-
-const modal =
-document.getElementById("modal");
-
-const orderButton =
-document.getElementById("orderButton");
-
-const close =
-document.getElementById("close");
-
-const send =
-document.getElementById("send");
-
-const orderInfo =
-document.getElementById("orderInfo");
-
+const brand = document.getElementById("brand");
+const pack = document.getElementById("package");
+const serviceType = document.getElementById("serviceType");
+const price = document.getElementById("price");
+const model = document.getElementById("model");
+const vin = document.getElementById("vin");
+const modal = document.getElementById("modal");
+const orderButton = document.getElementById("orderButton");
+const close = document.getElementById("close");
+const send = document.getElementById("send");
+const orderInfo = document.getElementById("orderInfo");
 
 function calculatePrice() {
+    let brandPrice = Number(brand.value);
+    let packagePrice = Number(pack.value);
 
-    let brandPrice =
-        Number(brand.value);
-
-    let packagePrice =
-        Number(pack.value);
-
-    let total =
-        brandPrice + packagePrice;
-
-
-    if (total > 0) {
-
-        price.innerHTML =
-            total.toLocaleString("ru-RU")
-            + ' <span>₸</span>';
-
+    if (brandPrice > 0) {
+        let total = brandPrice + packagePrice;
+        price.innerHTML = total.toLocaleString("ru-RU") + ' <span>₸</span>';
     } else {
-
-        price.innerHTML =
-            '— <span>₸</span>';
-
+        price.innerHTML = '— <span>₸</span>';
     }
-
 }
 
+brand.addEventListener("change", calculatePrice);
+pack.addEventListener("change", calculatePrice);
 
-brand.addEventListener(
-    "change",
-    calculatePrice
-);
-
-pack.addEventListener(
-    "change",
-    calculatePrice
-);
-
-
-orderButton.addEventListener(
-    "click",
-    function() {
-
-        if (
-            brand.value === "0"
-        ) {
-
-            alert(
-                "Выберите марку автомобиля."
-            );
-
-            return;
-        }
-
-
-        let brandName =
-            brand.options[
-                brand.selectedIndex
-            ].text;
-
-
-        let packageName =
-            pack.options[
-                pack.selectedIndex
-            ].text;
-
-
-        let vinValue =
-            vin.value.trim();
-
-
-        if (
-            vinValue &&
-            vinValue.length !== 17
-        ) {
-
-            alert(
-                "VIN должен содержать 17 символов."
-            );
-
-            return;
-        }
-
-
-        orderInfo.innerText =
-            brandName +
-            " • " +
-            (model.value || "модель не указана") +
-            " • " +
-            packageName;
-
-
-        modal.classList.add("active");
-
+orderButton.addEventListener("click", function() {
+    if (brand.value === "0") {
+        alert("Пожалуйста, выберите марку автомобиля.");
+        return;
     }
-);
 
-
-close.addEventListener(
-    "click",
-    function() {
-
-        modal.classList.remove(
-            "active"
-        );
-
+    if (!model.value.trim()) {
+        alert("Пожалуйста, укажите модель автомобиля.");
+        return;
     }
-);
 
-
-modal.addEventListener(
-    "click",
-    function(event) {
-
-        if (
-            event.target === modal
-        ) {
-
-            modal.classList.remove(
-                "active"
-            );
-
-        }
-
+    let vinValue = vin.value.trim();
+    if (vinValue.length !== 17) {
+        alert("VIN-код должен состоять ровно из 17 символов.");
+        return;
     }
-);
 
+    let brandName = brand.options[brand.selectedIndex].text;
+    let packageName = pack.options[pack.selectedIndex].text;
+    let serviceTypeName = serviceType.options[serviceType.selectedIndex].text;
 
-send.addEventListener(
-    "click",
-    function() {
+    orderInfo.innerHTML = `<strong>${brandName} ${model.value.trim()}</strong><br>Пакет: ${packageName}<br>Формат: ${serviceTypeName}<br>VIN: ${vinValue}`;
+    modal.classList.add("active");
+});
 
-        let name =
-            document.getElementById(
-                "name"
-            ).value.trim();
+close.addEventListener("click", function() {
+    modal.classList.remove("active");
+});
 
-
-        let phone =
-            document.getElementById(
-                "phone"
-            ).value.trim();
-
-
-        if (!name || !phone) {
-
-            alert(
-                "Заполните имя и телефон."
-            );
-
-            return;
-        }
-
-
-        alert(
-            "Заявка отправлена!"
-        );
-
-
-        modal.classList.remove(
-            "active"
-        );
-
+modal.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        modal.classList.remove("active");
     }
-);
+});
 
+send.addEventListener("click", function() {
+    let name = document.getElementById("name").value.trim();
+    let phone = document.getElementById("phone").value.trim();
 
-vin.addEventListener(
-    "input",
-    function() {
-
-        vin.value =
-            vin.value
-            .toUpperCase()
-            .replace(
-                /[^A-Z0-9]/g,
-                ""
-            )
-            .slice(0,17);
-
+    if (!name || !phone) {
+        alert("Заполните ваше имя и номер телефона.");
+        return;
     }
-);
 
+    let brandName = brand.options[brand.selectedIndex].text;
+    let packageName = pack.options[pack.selectedIndex].text;
+    let serviceTypeName = serviceType.options[serviceType.selectedIndex].text;
+    let totalPrice = price.innerText.replace('₸', '').trim();
+
+    let text = `Здравствуйте! Хочу оформить заявку на сайте RAVIX.KZ\n\n` +
+               `🚗 *Марка/Модель:* ${brandName} ${model.value.trim()}\n` +
+               `🔢 *VIN:* ${vin.value.trim()}\n` +
+               `📦 *Пакет:* ${packageName}\n` +
+               `🛠 *Формат:* ${serviceTypeName}\n` +
+               `💰 *Ориентировочная цена:* ${totalPrice} ₸\n\n` +
+               `👤 *Имя:* ${name}\n` +
+               `📞 *Телефон:* ${phone}`;
+
+    let myPhone = "77077213460"; 
+    let whatsappUrl = `https://wa.me/${myPhone}?text=${encodeURIComponent(text)}`;
+
+    window.open(whatsappUrl, "_blank");
+    modal.classList.remove("active");
+});
+
+vin.addEventListener("input", function() {
+    vin.value = vin.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0,17);
+});
 </script>
 
 </body>

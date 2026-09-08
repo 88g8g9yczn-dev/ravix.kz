@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVIX Activation — Русификация, Локализация и Активация авто в Казахстане</title>
+    <title>RAVIX Activation — Активация, Русификация и Локализация авто в Казахстане</title>
     <style>
         :root {
             --bg-dark: #0a0a0c;
@@ -17,13 +17,11 @@
             --gold-accent: #f59e0b;
             --green-accent: #22c55e;
             --blue-header: #2b6cb0;
+            --telegram-color: #229ed9;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.5; padding-bottom: 30px; }
-
-        /* Banner Top promo */
-        .promo-top-bar { background: linear-gradient(90deg, #be123c, #e11d48); color: #fff; font-size: 12px; font-weight: 700; text-align: center; padding: 8px 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Header Navigation */
         header { background: rgba(10, 10, 12, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--card-border); backdrop-filter: blur(10px); }
@@ -55,8 +53,10 @@
         select, input { width: 100%; padding: 13px 15px; border-radius: 12px; border: 1px solid var(--card-border); background: #0c0c10; color: #fff; font-size: 14px; margin-bottom: 14px; outline: none; transition: all 0.2s; }
         select:focus, input:focus { border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
 
-        /* Dynamic Car Info Box (Без фото) */
+        /* Dynamic Car Info Box с брендированной плашкой Логотипа */
         .car-preview { display: none; background: #0a0a0e; border: 1px solid var(--accent-red); border-radius: 14px; padding: 15px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+        .car-brand-logo-card { display: flex; align-items: center; gap: 15px; background: linear-gradient(135deg, #181824 0%, #0c0c10 100%); border: 1px solid var(--card-border); padding: 12px 16px; border-radius: 12px; margin-top: 10px; }
+        .logo-badge-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #e11d48, #9f1239); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 14px; letter-spacing: 1px; box-shadow: 0 0 10px var(--accent-red-glow); flex-shrink: 0; }
         .car-preview-title { font-size: 16px; font-weight: 800; color: #fff; }
         .car-preview-year { font-size: 13px; color: var(--accent-red); font-weight: 700; margin-top: 2px; }
 
@@ -74,7 +74,6 @@
         .price-box { background: linear-gradient(135deg, #2b0910 0%, #150508 100%); border: 1px solid #52111f; padding: 16px; border-radius: 14px; text-align: center; margin-bottom: 16px; }
         .price-title { font-size: 11px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; }
         .price-value { font-size: 30px; font-weight: 900; color: #fff; margin-top: 2px; }
-        .price-discount { font-size: 12px; color: var(--green-accent); font-weight: 700; margin-top: 4px; }
 
         .btn-main { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #e11d48 0%, #be123c 100%); color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-shadow: 0 4px 15px var(--accent-red-glow); text-decoration: none; }
         .btn-main:hover { background: var(--accent-red-hover); transform: translateY(-1px); }
@@ -130,16 +129,16 @@
         .copy-btn:active { background: var(--accent-red); }
 
         .btn-kaspi { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #f2522e; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; display: block; text-align: center; text-decoration: none; }
-        .btn-wa { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #25d366; background: transparent; color: #25d366; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; display: block; text-align: center; text-decoration: none; }
+        .btn-wa { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #25d366; background: rgba(37, 211, 102, 0.1); color: #25d366; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; display: block; text-align: center; text-decoration: none; }
+        .btn-wa:hover { background: #25d366; color: #fff; }
+        
+        .btn-tg { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--telegram-color); background: rgba(34, 158, 217, 0.1); color: var(--telegram-color); font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; display: block; text-align: center; text-decoration: none; }
+        .btn-tg:hover { background: var(--telegram-color); color: #fff; }
 
         footer { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 30px; padding: 0 16px; }
     </style>
 </head>
 <body>
-
-    <div class="promo-top-bar">
-        🔥 Акция в Караганде и КЗ: Скидка -15% по промокоду KARAGANDA + Диагностика в подарок!
-    </div>
 
     <header>
         <div class="nav-container">
@@ -160,19 +159,19 @@
         <!-- Вкладка 1: Главный конфигуратор -->
         <div id="home" class="tab-content active">
             <div class="hero">
-                <span class="hero-tag">ПРЕМИУМ ЛОКАЛИЗАЦИЯ</span>
+                <span class="hero-tag">ПРЕМИУМ АКТИВАЦИЯ ПО</span>
                 <h1 style="margin-top: 8px;">Активация & Русификация <span>RAVIX</span></h1>
-                <p>Профессиональная адаптация мультимедиа, навигации и приборных панелей для китайских автомобилей в Казахстане 🇰🇿 🇷🇺</p>
+                <p>Получите официальную цифровое ПО активацию для самостоятельной локализации мультимедиа китайских авто в Казахстане 🇰🇿 🇷🇺</p>
             </div>
 
             <div class="badge-grid">
                 <div class="badge-card">
                     <div class="num">1800+</div>
-                    <div class="txt">Прошитых авто</div>
+                    <div class="txt">Активированных авто</div>
                 </div>
                 <div class="badge-card">
                     <div class="num">100%</div>
-                    <div class="txt">Без разбора панелей</div>
+                    <div class="txt">По VIN-коду</div>
                 </div>
                 <div class="badge-card">
                     <div class="num">2 года</div>
@@ -181,7 +180,7 @@
             </div>
 
             <div class="intro-box">
-                <p>Настоящий сервис представляет собой расширенное руководство и систему записи/генерации прошивок для моделей китайского производства (Changan, Chery, Haval, Jetour, Geely, JAC, BYD) с услугами по локализации, русификации, казахизации мультимедийных систем и адаптации встроенного ПО под операторов Республики Казахстан.</p>
+                <p>Сервис RAVIX.KZ предоставляет генерацию персональных прошивок и активационных пакетов по VIN-коду вашего автомобиля (Changan, Chery, Haval, Jetour, Geely, JAC, BYD). Покупка осуществляется напрямую: вы получаете готовый софт с инструкцией и ставите его самостоятельно за несколько минут!</p>
             </div>
 
             <div class="card">
@@ -204,10 +203,15 @@
                     <option value="">-- Сначала выберите марку --</option>
                 </select>
 
-                <!-- Блок информации об авто (Без фото) -->
+                <!-- Блок информации об авто с логотипом сайта -->
                 <div class="car-preview" id="carPreview">
-                    <div class="car-preview-title" id="carTitle"></div>
-                    <div class="car-preview-year" id="carYear"></div>
+                    <div class="car-brand-logo-card">
+                        <div class="logo-badge-icon">RAVIX</div>
+                        <div>
+                            <div class="car-preview-title" id="carTitle"></div>
+                            <div class="car-preview-year" id="carYear"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <label>3. Выбор языкового пакета</label>
@@ -220,50 +224,46 @@
                 <label>4. Введите VIN-код авто (для генерации лицензии)</label>
                 <input type="text" id="vin" placeholder="Например: L3EFH23948..." maxlength="17" style="text-transform: uppercase;">
 
-                <label>5. Промокод (необязательно)</label>
-                <input type="text" id="promo" placeholder="Введите промокод (например KARAGANDA)" oninput="calculatePrice()" style="text-transform: uppercase;">
-
                 <div class="price-box">
-                    <div class="price-title">Итоговая стоимость</div>
+                    <div class="price-title">Стоимость активатора</div>
                     <div class="price-value" id="priceDisplay">0 ₸</div>
-                    <div class="price-discount" id="discountNote" style="display: none;">✓ Применена скидка по промокоду (-15%)</div>
                 </div>
 
                 <button class="btn-main" onclick="openPaymentModal()">
-                    <span>Забронировать прошивку</span>
+                    <span>Заказать активацию прошивки</span>
                 </button>
             </div>
 
-            <!-- Блок маркетинг: Как мы работаем -->
+            <!-- Блок: Как происходит активация -->
             <div class="card">
-                <h2>🚀 Как проходит процесс активации</h2>
+                <h2>🚀 Как получить и установить прошивку</h2>
                 <div class="step-list">
                     <div class="step-item">
                         <div class="step-num">1</div>
                         <div class="step-text">
-                            <h4>Заявка и VIN-код</h4>
-                            <p>Вы выбираете модель, вводите VIN и оформляете заказ.</p>
+                            <h4>Выбор и VIN-код</h4>
+                            <p>Вы выбираете вашу модель авто, указываете VIN и оформляете заказ.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">2</div>
                         <div class="step-text">
-                            <h4>Генерация прошивки</h4>
-                            <p>Сервер RAVIX подготавливает индивидуальный пакет под вашу систему.</p>
+                            <h4>Оплата и отправка</h4>
+                            <p>После оплаты отправляете чек в WhatsApp или Telegram с указанием VIN.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">3</div>
                         <div class="step-text">
-                            <h4>Установка (40 минут)</h4>
-                            <p>Очно в Караганде/других городах КЗ или дистанционно через флешку.</p>
+                            <h4>Генерация файла</h4>
+                            <p>Вы мгновенно получаете персональную прошивку и понятную видео-инструкцию.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">4</div>
                         <div class="step-text">
-                            <h4>Готовый результат</h4>
-                            <p>Русский/казахский язык, Яндекс.Навигатор, YouTube и гарантия.</p>
+                            <h4>Установка за 15 минут</h4>
+                            <p>Скачиваете файл на флешку, вставляете в авто — готово, вы сам себе хозяин!</p>
                         </div>
                     </div>
                 </div>
@@ -277,9 +277,9 @@
                 <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">Для корректного отображения и эксплуатации современных китайских автомобилей на рынке Казахстана требуется комплексная адаптация встроенного программного обеспечения:</p>
                 <ul class="styled-list">
                     <li><strong>Языковая адаптация:</strong> Перевод интерфейсов головного устройства (ГШУ), приборной панели и проекционного дисплея (HUD) на русский и казахский языки.</li>
-                    <li><strong>Сетевая интеграция:</strong> Установка и настройка встроенных SIM-карт местных операторов (Tele2, Beeline, Kcell) для обеспечения постоянного доступа к сети 4G/LTE.</li>
+                    <li><strong>Сетевая интеграция:</strong> Инструкции по настройке встроенных SIM-карт местных операторов (Tele2, Beeline, Kcell) для доступа к 4G/LTE.</li>
                     <li><strong>Навигационные сервисы:</strong> Установка и оптимизация карт Яндекс.Навигатор, 2GIS и Google Maps с корректной работой GPS/ГЛОНАСС модулей.</li>
-                    <li><strong>Мультимедиа и приложения:</strong> Интеграция онлайн-радио, видеосервисов (YouTube), стриминговых музыкальных платформ (Spotify, Yandex Music) и голосовых ассистентов.</li>
+                    <li><strong>Мультимедиа и приложения:</strong> Интеграция онлайн-радио, видеосервисов (YouTube), музыкальных платформ (Spotify, Yandex Music) и голосовых ассистентов.</li>
                 </ul>
             </div>
 
@@ -287,7 +287,6 @@
                 <h2>2. Подробный каталог автомобильных марок</h2>
 
                 <h3>2.1. Changan</h3>
-                <p style="font-size: 12px; color: var(--text-muted);">Бренд Changan отличается технологичными моделями линейки UNI, Deepal и доступными кроссоверами серии CS.</p>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -312,7 +311,6 @@
                 </div>
 
                 <h3>2.2. Chery</h3>
-                <p style="font-size: 12px; color: var(--text-muted);">Марка Chery занимает ключевые позиции благодаря популярным линейкам Tiggo и седанам Arrizo.</p>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -335,7 +333,6 @@
                 </div>
 
                 <h3>2.3. Haval</h3>
-                <p style="font-size: 12px; color: var(--text-muted);">Внедорожники и кроссоверы Haval от концерна Great Wall Motor требуют специализированного подхода к перепрошивке систем кругового обзора и зимних пакетов.</p>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -358,7 +355,6 @@
                 </div>
 
                 <h3>2.4. Jetour</h3>
-                <p style="font-size: 12px; color: var(--text-muted);">Суббренд Jetour ориентирован на путешествия и активный отдых. Включает кроссоверы серии X и внедорожную линейку T2.</p>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -379,7 +375,6 @@
                 </div>
 
                 <h3>2.5. Geely</h3>
-                <p style="font-size: 12px; color: var(--text-muted);">Автомобили Geely созданы с использованием технологий Volvo и оснащаются современными мультимедийными системами на базе GKUI / ECARX.</p>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -402,7 +397,6 @@
                 </div>
 
                 <h3>2.6. JAC</h3>
-                <p style="font-size: 12px; color: var(--text-muted);">Модельный ряд JAC включает широкий спектр доступных городских седанов, кроссоверов и коммерческих пикапов.</p>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -423,7 +417,6 @@
                 </div>
 
                 <h3>2.7. BYD (Build Your Dreams)</h3>
-                <p style="font-size: 12px; color: var(--text-muted);">BYD — мировой лидер в сфере подзаряжаемых гибридов (DM-i) и электромобилей (EV). Поставляются с поворотным центральным экраном и операционной системой DiLink.</p>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -448,13 +441,12 @@
             </div>
 
             <div class="card">
-                <h2>3. Технический регламент и шаги прошивки</h2>
+                <h2>3. Технический процесс установки</h2>
                 <ol class="styled-list" style="list-style-type: decimal;">
-                    <li><strong>Диагностика и сканирование:</strong> Проверка текущей версии ПО (FW version) через OBD2-сканер и инженерное меню ГШУ.</li>
-                    <li><strong>Резервное копирование (Backup):</strong> Сохранение дампа оригинальной прошивки и параметров конфигурации блока.</li>
-                    <li><strong>Инсталляция языкового пакета:</strong> Загрузка кастомного или оригинального мультиязычного софта с поддержкой RU/KK символов.</li>
-                    <li><strong>Сетевая настройка:</strong> Пайка/замена eSIM или установка внешнего роутера для стабильного подключения к интернету в Казахстане.</li>
-                    <li><strong>Тестирование:</strong> Проверка работы GPS, отображения систем безопасности ADAS, климат-контроля и звуковых каналов.</li>
+                    <li><strong>Получение активатора:</strong> После покупки вы получаете заархивированный файл и лицензию под ваш VIN.</li>
+                    <li><strong>Запись на USB:</strong> Форматируете обычную флешку в FAT32/exFAT и копируете туда полученные файлы.</li>
+                    <li><strong>Подключение к авто:</strong> Вставляете USB-флешку в штатный разъем автомобиля (обычно под консолью или в подлокотнике).</li>
+                    <li><strong>Автоматическая прошивка:</strong> Нажимаете кнопку подтверждения на экране, процесс занимает от 10 до 15 минут.</li>
                 </ol>
             </div>
         </div>
@@ -545,23 +537,23 @@
                 <h2>❓ Часто задаваемые вопросы (FAQ)</h2>
                 
                 <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Смогу ли я установить прошивку самостоятельно? <span>+</span></div>
+                    <div class="faq-answer">Да! Все наши файлы прошивок максимально автоматизированы. Вы получаете детальную пошаговую инструкцию и видеоурок. Всё, что требуется — просто вставить флешку в авто. Каждый сам себе хозяин!</div>
+                </div>
+
+                <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">Теряется ли гарантия у автодилера? <span>+</span></div>
-                    <div class="faq-answer">Нет! Установка производится программным способом. Заводские системы безопасности и гарантийные пломбы не нарушаются. Перед поездом к дилеру можно сделать откатку в сток за 10 минут.</div>
+                    <div class="faq-answer">Нет! Установка производится безопасным программным способом без вскрытия панелей. При желании вы можете легко откатить систему в заводской сток за 5 минут.</div>
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">Где вы находитесь в Караганде и КЗ? <span>+</span></div>
-                    <div class="faq-answer">У нас есть филиалы и выездные мастера в Караганде, Астане, Алматы и Шымкенте. Также доступна безопасная дистанционная прошивка для других регионов.</div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">Сколько времени занимает установка? <span>+</span></div>
-                    <div class="faq-answer">Обычно процесс занимает от 30 до 60 минут в зависимости от марки автомобиля и выбираемого пакета приложений.</div>
+                    <div class="faq-question" onclick="toggleFaq(this)">Как быстро я получу файл после оплаты? <span>+</span></div>
+                    <div class="faq-answer">Сразу после отправки чека об оплате и VIN-кода в WhatsApp или Telegram, сервер подготавливает файл лицензии. Обычно отправка занимает от 10 до 30 минут.</div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">Как работают обновления ПО? <span>+</span></div>
-                    <div class="faq-answer">Все последующие патчи и обновления приложений отправляются на вашу электронную почту или загружаются через встроенный авто-апдейтер RAVIX.</div>
+                    <div class="faq-answer">Все последующие патчи и обновления отправляются вам личным сообщением в мессенджер или доступны для загрузки через авто-апдейтер.</div>
                 </div>
             </div>
 
@@ -570,10 +562,10 @@
                 
                 <div class="review-card">
                     <div class="review-header">
-                        <span class="review-author">Арман (г. Караганда, пр. Бухар Жырау) — Changan UNI-K</span>
+                        <span class="review-author">Арман (г. Караганда) — Changan UNI-K</span>
                         <span class="review-stars">★★★★★</span>
                     </div>
-                    <div class="review-text">«Прошили Юникей за 45 минут в Караганде. Казахский голосовой помощник понимает отлично, навигатор вывели на панель спидометра. Рахмет ребята!»</div>
+                    <div class="review-text">«Купил активацию, скинули файл на ватсап. Скинул на обычную флешку, вставил и через 10 минут машина на русском и казахском языках! Очень удобно, что не надо никуда ехать!»</div>
                 </div>
 
                 <div class="review-card">
@@ -581,7 +573,7 @@
                         <span class="review-author">Максим (г. Астана) — Geely Monjaro</span>
                         <span class="review-stars">★★★★★</span>
                     </div>
-                    <div class="review-text">«Прошили все 3 экрана на Монжаро. Яндекс навигатор с камерами Сергек — это просто спасение. Пользуюсь уже 4 месяца без сбоев.»</div>
+                    <div class="review-text">«Написал в Телеграм, оплатил и получил прошивку на 3 экрана. Сам всё обновил за вечер, никаких проблем. Яндекс навигатор с камерами работает отлично.»</div>
                 </div>
 
                 <div class="review-card">
@@ -589,7 +581,7 @@
                         <span class="review-author">Данияр (г. Алматы) — BYD Song Plus DM-i</span>
                         <span class="review-stars">★★★★★</span>
                     </div>
-                    <div class="review-text">«Удалили все китайские приложения, поставили Google и YouTube. Планшет вращается, меню переведено полностью на русский и казахский.»</div>
+                    <div class="review-text">«Прошивка DiLink прошла гладко. Поставил Google Play и YouTube. Спасибо за подробные инструкции!»</div>
                 </div>
             </div>
         </div>
@@ -598,7 +590,7 @@
         <div id="pay" class="tab-content">
             <div class="card">
                 <h2>💳 Реквизиты для оплаты</h2>
-                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Оплата производится официально. После перевода вы получите онлайн-чек и мгновенную активацию VIN-кода в системе.</p>
+                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Оплата производится официально. После перевода отправьте чек в WhatsApp или Telegram для мгновенной генерации активации по VIN.</p>
 
                 <div class="bank-card">
                     <div class="bank-header">
@@ -641,12 +633,15 @@
                 <a href="https://kaspi.kz/pay" target="_blank" class="btn-kaspi">Перейти к переводу в Kaspi</a>
             </div>
 
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 10px; text-align: center;">После оплаты нажмите на удобный мессенджер, чтобы отправить чек и получить прошивку:</p>
+
             <a id="waPayBtn" href="#" target="_blank" class="btn-wa">Отправить чек и VIN в WhatsApp 💬</a>
+            <a id="tgPayBtn" href="#" target="_blank" class="btn-tg">Отправить чек и VIN в Telegram ✈️</a>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 RAVIX Activation Kazakhstan (Караганда / Астана / Алматы / Шымкент). Все права защищены.</p>
+        <p>© 2026 RAVIX Activation Kazakhstan. Все права защищены.</p>
     </footer>
 
     <script>
@@ -781,25 +776,15 @@
             const brand = document.getElementById('brand').value;
             const modelIdx = document.getElementById('model').value;
             const pkg = document.getElementById('package').value;
-            const promo = document.getElementById('promo').value.trim().toUpperCase();
             const priceDisplay = document.getElementById('priceDisplay');
-            const discountNote = document.getElementById('discountNote');
 
             if (!brand || modelIdx === "") {
                 priceDisplay.textContent = '0 ₸';
-                discountNote.style.display = 'none';
                 return 0;
             }
 
             let price = carData[brand].basePrice;
             if (pkg === 'kz_only' || pkg === 'ru_only') price -= 5000;
-
-            if (promo === 'KARAGANDA' || promo === 'RAVIX2026') {
-                price = Math.round(price * 0.85); // 15% скидка
-                discountNote.style.display = 'block';
-            } else {
-                discountNote.style.display = 'none';
-            }
 
             priceDisplay.textContent = price.toLocaleString('ru-RU') + ' ₸';
             return price;
@@ -832,8 +817,15 @@
             document.getElementById('summaryVin').textContent = vinUpper;
             document.getElementById('summaryPrice').textContent = price.toLocaleString('ru-RU') + ' ₸';
 
-            const waText = encodeURIComponent(`Здравствуйте! Хочу заказать прошивку RAVIX.\n\n🚗 Автомобиль: ${carName}\n📦 Пакет ПО: ${pkgName}\n🔑 VIN-код: ${vinUpper}\n💰 Сумма: ${price.toLocaleString('ru-RU')} ₸`);
-            document.getElementById('waPayBtn').href = `https://wa.me/77077213460?text=${waText}`;
+            // Текст для мессенджеров
+            const textMsg = `Здравствуйте! Я оплатил прошивку RAVIX.\n\n🚗 Автомобиль: ${carName}\n📦 Пакет ПО: ${pkgName}\n🔑 VIN-код: ${vinUpper}\n💰 Сумма: ${price.toLocaleString('ru-RU')} ₸\n\nПрикрепляю чек оплаты:`;
+            const encodedMsg = encodeURIComponent(textMsg);
+
+            // Ссылка на WhatsApp (87077213460 -> +77077213460)
+            document.getElementById('waPayBtn').href = `https://wa.me/77077213460?text=${encodedMsg}`;
+
+            // Ссылка на Telegram (@dostal1ev_01)
+            document.getElementById('tgPayBtn').href = `https://t.me/dostal1ev_01?text=${encodedMsg}`;
 
             document.getElementById('payModal').style.display = 'flex';
         }

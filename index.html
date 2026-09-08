@@ -1,856 +1,438 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVIX Activation — Активация, Русификация и Локализация авто в Казахстане</title>
-    <style>
-        :root {
-            --bg-dark: #0a0a0c;
-            --card-bg: #141419;
-            --card-border: #262630;
-            --accent-red: #e11d48;
-            --accent-red-hover: #f43f5e;
-            --accent-red-glow: rgba(225, 29, 72, 0.35);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --gold-accent: #f59e0b;
-            --green-accent: #22c55e;
-            --blue-header: #2b6cb0;
-            --telegram-color: #229ed9;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAVIX — Активация и локализация автомобилей</title>
+  <meta name="description" content="RAVIX — современный сервис активации и локализации мультимедиа китайских автомобилей.">
+  <style>
+    :root{
+      --bg:#07080a;
+      --card:#101216;
+      --card2:#15171c;
+      --text:#f5f5f5;
+      --muted:#8d929c;
+      --line:rgba(255,255,255,.09);
+      --accent:#d8ff3e;
+      --accent2:#b7df22;
+      --radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,select{font:inherit}
+    .container{width:min(1180px,calc(100% - 40px));margin:auto}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.5; padding-bottom: 30px; }
+    header{
+      position:fixed;top:0;left:0;right:0;z-index:20;
+      backdrop-filter:blur(18px);
+      background:rgba(7,8,10,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:24px;font-weight:900;letter-spacing:-1px}
+    .logo span{color:var(--accent)}
+    .navlinks{display:flex;gap:28px;color:#b9bdc5;font-size:14px}
+    .navlinks a:hover{color:#fff}
+    .navbtn{
+      padding:11px 18px;border:1px solid var(--line);border-radius:12px;
+      background:#fff;color:#08090a;font-weight:700;
+    }
 
-        /* Header Navigation */
-        header { background: rgba(10, 10, 12, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--card-border); backdrop-filter: blur(10px); }
-        .nav-container { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; }
-        .logo { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
-        .logo span { color: var(--accent-red); }
+    .hero{padding:170px 0 100px;position:relative;overflow:hidden}
+    .hero:before{
+      content:"";position:absolute;width:620px;height:620px;right:-220px;top:-180px;
+      background:radial-gradient(circle,rgba(216,255,62,.13),transparent 65%);
+      pointer-events:none;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 11px;border:1px solid var(--line);border-radius:999px;
+      color:#c9cdd3;font-size:12px;background:rgba(255,255,255,.025);
+    }
+    .dot{width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 15px var(--accent)}
+    h1{
+      font-size:clamp(48px,8vw,94px);line-height:.92;letter-spacing:-5px;
+      max-width:950px;margin:25px 0;
+    }
+    h1 span{color:var(--accent)}
+    .hero p{max-width:650px;color:var(--muted);font-size:18px}
+    .actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+    .btn{
+      border:0;border-radius:14px;padding:14px 21px;cursor:pointer;font-weight:800;
+      transition:.2s transform,.2s opacity;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--accent);color:#080900}
+    .secondary{background:#17191e;color:#fff;border:1px solid var(--line)}
 
-        nav { display: flex; gap: 6px; padding: 10px 16px; max-width: 800px; margin: 0 auto; overflow-x: auto; }
-        .nav-link { flex: 1; text-align: center; color: var(--text-muted); text-decoration: none; font-size: 12px; font-weight: 600; padding: 10px 6px; border-radius: 12px; background: #141419; border: 1px solid var(--card-border); transition: all 0.2s; cursor: pointer; white-space: nowrap; }
-        .nav-link.active { color: #fff; background: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 12px var(--accent-red-glow); }
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:70px}
+    .stat{padding:20px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:18px}
+    .stat strong{display:block;font-size:25px}
+    .stat small{color:var(--muted)}
 
-        .container { max-width: 800px; margin: 15px auto; padding: 0 16px; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+    section{padding:95px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:35px}
+    .section-head h2{font-size:42px;letter-spacing:-2px}
+    .section-head p{color:var(--muted);max-width:470px}
 
-        /* Hero Banner */
-        .hero { background: linear-gradient(135deg, #24080e 0%, #0a0a0c 100%); border: 1px solid #4a101d; border-radius: 20px; padding: 24px 20px; text-align: center; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(225, 29, 72, 0.15); position: relative; overflow: hidden; }
-        .hero h1 { font-size: 22px; font-weight: 800; margin-bottom: 8px; color: #fff; }
-        .hero h1 span { color: var(--accent-red); }
-        .hero p { color: var(--text-muted); font-size: 13px; max-width: 95%; margin: 0 auto 12px; }
-        .hero-tag { display: inline-block; background: rgba(225, 29, 72, 0.2); color: var(--accent-red); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1px solid var(--accent-red); }
+    .brands{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .brand{
+      min-height:150px;padding:24px;border:1px solid var(--line);border-radius:22px;
+      background:linear-gradient(145deg,#111318,#0d0f12);
+      display:flex;flex-direction:column;justify-content:space-between;
+      transition:.25s;
+    }
+    .brand:hover{border-color:rgba(216,255,62,.45);transform:translateY(-4px)}
+    .brand b{font-size:24px}
+    .brand small{color:var(--muted)}
 
-        /* Card Styling */
-        .card { background: var(--card-bg); border-radius: 18px; padding: 20px; margin-bottom: 18px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        h2 { font-size: 17px; margin-bottom: 16px; color: #fff; display: flex; align-items: center; gap: 8px; border-left: 4px solid var(--accent-red); padding-left: 10px; }
-        h3 { font-size: 15px; color: var(--accent-red); margin-top: 18px; margin-bottom: 8px; }
+    .calculator{
+      display:grid;grid-template-columns:1fr 1fr;gap:15px;
+      background:linear-gradient(135deg,#12151a,#0c0e11);
+      border:1px solid var(--line);padding:15px;border-radius:28px;
+    }
+    .form{padding:30px}
+    .form h3{font-size:30px;margin-bottom:8px}
+    .form p{color:var(--muted);margin-bottom:25px}
+    label{display:block;color:#aeb2ba;font-size:12px;margin:15px 0 7px}
+    select,input{
+      width:100%;padding:15px;border-radius:13px;border:1px solid var(--line);
+      background:#080a0d;color:#fff;outline:none;
+    }
+    select:focus,input:focus{border-color:rgba(216,255,62,.5)}
+    .pricebox{
+      min-height:100%;border-radius:21px;background:#080a0c;
+      border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .pricebox small{color:var(--muted)}
+    .price{font-size:54px;font-weight:900;letter-spacing:-3px;margin:15px 0}
+    .price span{font-size:18px;letter-spacing:0;color:var(--muted)}
+    .checks{display:grid;gap:12px;margin:25px 0;color:#c6c9cf}
+    .checks div:before{content:"✓";color:var(--accent);font-weight:900;margin-right:10px}
 
-        label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
-        select, input { width: 100%; padding: 13px 15px; border-radius: 12px; border: 1px solid var(--card-border); background: #0c0c10; color: #fff; font-size: 14px; margin-bottom: 14px; outline: none; transition: all 0.2s; }
-        select:focus, input:focus { border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .step{padding:27px;border:1px solid var(--line);border-radius:22px;background:var(--card)}
+    .num{color:var(--accent);font-size:12px;font-weight:900}
+    .step h3{font-size:22px;margin:40px 0 8px}
+    .step p{color:var(--muted);font-size:14px}
 
-        /* Dynamic Car Info Box с брендированной плашкой Логотипа */
-        .car-preview { display: none; background: #0a0a0e; border: 1px solid var(--accent-red); border-radius: 14px; padding: 15px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
-        .car-brand-logo-card { display: flex; align-items: center; gap: 15px; background: linear-gradient(135deg, #181824 0%, #0c0c10 100%); border: 1px solid var(--card-border); padding: 12px 16px; border-radius: 12px; margin-top: 10px; }
-        .logo-badge-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #e11d48, #9f1239); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 14px; letter-spacing: 1px; box-shadow: 0 0 10px var(--accent-red-glow); flex-shrink: 0; }
-        .car-preview-title { font-size: 16px; font-weight: 800; color: #fff; }
-        .car-preview-year { font-size: 13px; color: var(--accent-red); font-weight: 700; margin-top: 2px; }
+    .faq{max-width:820px}
+    details{border-top:1px solid var(--line);padding:20px 0}
+    summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between}
+    summary:after{content:"+";color:var(--accent);font-size:20px}
+    details[open] summary:after{content:"−"}
+    details p{color:var(--muted);padding-top:12px;max-width:700px}
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    .cta{
+      padding:60px;border-radius:28px;border:1px solid var(--line);
+      background:radial-gradient(circle at 80% 20%,rgba(216,255,62,.11),transparent 35%),#111318;
+      text-align:center;
+    }
+    .cta h2{font-size:48px;letter-spacing:-2px}
+    .cta p{color:var(--muted);max-width:600px;margin:12px auto 25px}
 
-        /* Badges & Intro */
-        .badge-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 18px; }
-        .badge-card { background: #0c0c10; border: 1px solid var(--card-border); padding: 12px 8px; border-radius: 12px; text-align: center; }
-        .badge-card .num { font-size: 18px; font-weight: 800; color: var(--accent-red); }
-        .badge-card .txt { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+    footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-size:13px}
+    .footer{display:flex;justify-content:space-between;gap:20px}
 
-        .intro-box { background-color: #0c0c10; padding: 15px; border-left: 4px solid var(--blue-header); border-radius: 8px; margin-bottom: 18px; font-size: 13px; color: var(--text-muted); }
+    .modal{
+      position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+      display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
+    }
+    .modal.open{display:flex}
+    .modal-card{width:min(520px,100%);background:#111318;border:1px solid var(--line);border-radius:25px;padding:28px}
+    .close{float:right;background:none;border:0;color:#aaa;font-size:25px;cursor:pointer}
+    .modal-card h3{font-size:28px;margin-bottom:7px}
+    .modal-card p{color:var(--muted);margin-bottom:20px}
 
-        /* Price & Buttons */
-        .price-box { background: linear-gradient(135deg, #2b0910 0%, #150508 100%); border: 1px solid #52111f; padding: 16px; border-radius: 14px; text-align: center; margin-bottom: 16px; }
-        .price-title { font-size: 11px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; }
-        .price-value { font-size: 30px; font-weight: 900; color: #fff; margin-top: 2px; }
-
-        .btn-main { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #e11d48 0%, #be123c 100%); color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-shadow: 0 4px 15px var(--accent-red-glow); text-decoration: none; }
-        .btn-main:hover { background: var(--accent-red-hover); transform: translateY(-1px); }
-
-        /* Tables Style */
-        .table-responsive { overflow-x: auto; margin-top: 10px; margin-bottom: 15px; }
-        table { width: 100%; border-collapse: collapse; font-size: 12px; }
-        th, td { border: 1px solid var(--card-border); padding: 10px; text-align: left; }
-        th { background-color: #0c0c10; color: var(--text-muted); font-weight: 700; }
-        tr:nth-child(even) { background-color: #0d0d12; }
-        
-        .pkg-table th, .pkg-table td { text-align: center; }
-        .pkg-table td:first-child { text-align: left; color: #fff; font-weight: 600; }
-        .tag-yes { color: var(--green-accent); font-weight: bold; }
-        .tag-no { color: #64748b; }
-
-        /* Step & Feature Lists */
-        .step-list { display: flex; flex-direction: column; gap: 12px; }
-        .step-item { display: flex; gap: 14px; background: #0c0c10; border: 1px solid var(--card-border); padding: 14px; border-radius: 12px; align-items: center; }
-        .step-num { width: 32px; height: 32px; background: var(--accent-red); color: #fff; border-radius: 50%; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-        .step-text h4 { font-size: 14px; color: #fff; margin-bottom: 2px; }
-        .step-text p { font-size: 11px; color: var(--text-muted); }
-
-        .styled-list { list-style-position: inside; margin-left: 5px; font-size: 13px; color: var(--text-muted); }
-        .styled-list li { margin-bottom: 6px; }
-
-        /* FAQ & Reviews */
-        .faq-item { border-bottom: 1px solid var(--card-border); padding: 12px 0; }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-question { font-size: 14px; font-weight: 700; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-answer { font-size: 13px; color: var(--text-muted); margin-top: 8px; display: none; line-height: 1.5; }
-
-        .review-card { background: #0c0c10; border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-        .review-author { font-size: 13px; font-weight: 700; color: #fff; }
-        .review-stars { color: var(--gold-accent); font-size: 12px; }
-        .review-text { font-size: 12px; color: var(--text-muted); font-style: italic; }
-
-        /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 1000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(5px); }
-        .modal-content { background: #121218; border-radius: 20px; padding: 22px; max-width: 440px; width: 100%; border: 1px solid var(--accent-red); position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-btn { position: absolute; top: 15px; right: 18px; color: var(--text-muted); font-size: 22px; cursor: pointer; }
-        .summary-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: var(--text-muted); }
-        .summary-total { display: flex; justify-content: space-between; font-size: 17px; font-weight: 800; color: #fff; border-top: 1px solid var(--card-border); padding-top: 12px; margin-top: 12px; margin-bottom: 16px; }
-
-        .bank-card { background: #0a0a0e; border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-        .bank-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-        .bank-name { font-size: 13px; font-weight: 700; }
-        .kaspi-color { color: #f2522e; }
-        .freedom-color { color: #22c55e; }
-        .card-num { font-size: 17px; font-weight: 800; color: #fff; font-family: monospace; letter-spacing: 1px; }
-        .copy-btn { background: #262630; color: #fff; border: none; padding: 5px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 600; }
-        .copy-btn:active { background: var(--accent-red); }
-
-        .btn-kaspi { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #f2522e; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; display: block; text-align: center; text-decoration: none; }
-        .btn-wa { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #25d366; background: rgba(37, 211, 102, 0.1); color: #25d366; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; display: block; text-align: center; text-decoration: none; }
-        .btn-wa:hover { background: #25d366; color: #fff; }
-        
-        .btn-tg { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--telegram-color); background: rgba(34, 158, 217, 0.1); color: var(--telegram-color); font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; display: block; text-align: center; text-decoration: none; }
-        .btn-tg:hover { background: var(--telegram-color); color: #fff; }
-
-        footer { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 30px; padding: 0 16px; }
-    </style>
+    @media(max-width:800px){
+      .navlinks{display:none}
+      .stats,.brands{grid-template-columns:repeat(2,1fr)}
+      .calculator{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      h1{letter-spacing:-3px}
+      .section-head{display:block}
+      .section-head p{margin-top:12px}
+      .cta{padding:35px 20px}
+      .cta h2{font-size:35px}
+    }
+    @media(max-width:500px){
+      .container{width:min(100% - 24px,1180px)}
+      .stats,.brands{grid-template-columns:1fr}
+      .hero{padding-top:135px}
+      section{padding:70px 0}
+      .navbtn{display:none}
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">RAVIX<span>.KZ</span></a>
-            <span style="font-size: 10px; color: var(--gold-accent); font-weight: 700; border: 1px solid var(--gold-accent); padding: 2px 8px; border-radius: 10px;">OFFICIAL 2026</span>
-        </div>
-        <nav>
-            <div class="nav-link active" onclick="switchTab('home', this)">Конфигуратор ⚙️</div>
-            <div class="nav-link" onclick="switchTab('catalog', this)">Каталог и Регламент 📖</div>
-            <div class="nav-link" onclick="switchTab('features', this)">О прошивке ⚡</div>
-            <div class="nav-link" onclick="switchTab('faq', this)">FAQ & Отзывы 💬</div>
-            <div class="nav-link" onclick="switchTab('pay', this)">Оплата 💳</div>
-        </nav>
-    </header>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">RAVI<span>X</span></a>
+    <nav class="navlinks">
+      <a href="#services">Услуги</a>
+      <a href="#calculator">Стоимость</a>
+      <a href="#process">Как это работает</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="navbtn" href="#calculator">Рассчитать</a>
+  </div>
+</header>
 
+<main>
+  <section class="hero">
     <div class="container">
+      <div class="eyebrow"><i class="dot"></i> Сервис локализации автомобилей</div>
+      <h1>Ваш автомобиль.<br><span>Ваш язык.</span></h1>
+      <p>
+        RAVIX помогает активировать и локализовать мультимедийные системы
+        автомобилей. Быстро, понятно и под конкретный VIN.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#calculator">Рассчитать стоимость</a>
+        <a class="btn secondary" href="#process">Как это работает</a>
+      </div>
 
-        <!-- Вкладка 1: Главный конфигуратор -->
-        <div id="home" class="tab-content active">
-            <div class="hero">
-                <span class="hero-tag">ПРЕМИУМ АКТИВАЦИЯ ПО</span>
-                <h1 style="margin-top: 8px;">Активация & Русификация <span>RAVIX</span></h1>
-                <p>Получите официальную цифровое ПО активацию для самостоятельной локализации мультимедиа китайских авто в Казахстане 🇰🇿 🇷🇺</p>
-            </div>
-
-            <div class="badge-grid">
-                <div class="badge-card">
-                    <div class="num">1800+</div>
-                    <div class="txt">Активированных авто</div>
-                </div>
-                <div class="badge-card">
-                    <div class="num">100%</div>
-                    <div class="txt">По VIN-коду</div>
-                </div>
-                <div class="badge-card">
-                    <div class="num">2 года</div>
-                    <div class="txt">Гарантия на ПО</div>
-                </div>
-            </div>
-
-            <div class="intro-box">
-                <p>Сервис RAVIX.KZ предоставляет генерацию персональных прошивок и активационных пакетов по VIN-коду вашего автомобиля (Changan, Chery, Haval, Jetour, Geely, JAC, BYD). Покупка осуществляется напрямую: вы получаете готовый софт с инструкцией и ставите его самостоятельно за несколько минут!</p>
-            </div>
-
-            <div class="card">
-                <h2>⚙️ Выбор авто и конфигурации</h2>
-                
-                <label>1. Марка автомобиля</label>
-                <select id="brand" onchange="updateModels()">
-                    <option value="">-- Выберите марку --</option>
-                    <option value="changan">Changan</option>
-                    <option value="geely">Geely</option>
-                    <option value="chery">Chery</option>
-                    <option value="haval">Haval</option>
-                    <option value="jetour">Jetour</option>
-                    <option value="jac">JAC</option>
-                    <option value="byd">BYD</option>
-                </select>
-
-                <label>2. Модель и Поколение</label>
-                <select id="model" disabled onchange="onModelSelect()">
-                    <option value="">-- Сначала выберите марку --</option>
-                </select>
-
-                <!-- Блок информации об авто с логотипом сайта -->
-                <div class="car-preview" id="carPreview">
-                    <div class="car-brand-logo-card">
-                        <div class="logo-badge-icon">RAVIX</div>
-                        <div>
-                            <div class="car-preview-title" id="carTitle"></div>
-                            <div class="car-preview-year" id="carYear"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <label>3. Выбор языкового пакета</label>
-                <select id="package" onchange="calculatePrice()">
-                    <option value="full">Полный пакет (Казахский 🇰🇿 + Русский 🇷🇺 + Голос + Навигация)</option>
-                    <option value="kz_only">Только Казахский язык + Голосовое управление 🇰🇿</option>
-                    <option value="ru_only">Только Русский язык 🇷🇺</option>
-                </select>
-
-                <label>4. Введите VIN-код авто (для генерации лицензии)</label>
-                <input type="text" id="vin" placeholder="Например: L3EFH23948..." maxlength="17" style="text-transform: uppercase;">
-
-                <div class="price-box">
-                    <div class="price-title">Стоимость активатора</div>
-                    <div class="price-value" id="priceDisplay">0 ₸</div>
-                </div>
-
-                <button class="btn-main" onclick="openPaymentModal()">
-                    <span>Заказать активацию прошивки</span>
-                </button>
-            </div>
-
-            <!-- Блок: Как происходит активация -->
-            <div class="card">
-                <h2>🚀 Как получить и установить прошивку</h2>
-                <div class="step-list">
-                    <div class="step-item">
-                        <div class="step-num">1</div>
-                        <div class="step-text">
-                            <h4>Выбор и VIN-код</h4>
-                            <p>Вы выбираете вашу модель авто, указываете VIN и оформляете заказ.</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-num">2</div>
-                        <div class="step-text">
-                            <h4>Оплата и отправка</h4>
-                            <p>После оплаты отправляете чек в WhatsApp или Telegram с указанием VIN.</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-num">3</div>
-                        <div class="step-text">
-                            <h4>Генерация файла</h4>
-                            <p>Вы мгновенно получаете персональную прошивку и понятную видео-инструкцию.</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-num">4</div>
-                        <div class="step-text">
-                            <h4>Установка за 15 минут</h4>
-                            <p>Скачиваете файл на флешку, вставляете в авто — готово, вы сам себе хозяин!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Вкладка 2: Каталог и Регламент -->
-        <div id="catalog" class="tab-content">
-            <div class="card">
-                <h2>1. Обзор направлений локализации автомобильных систем</h2>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">Для корректного отображения и эксплуатации современных китайских автомобилей на рынке Казахстана требуется комплексная адаптация встроенного программного обеспечения:</p>
-                <ul class="styled-list">
-                    <li><strong>Языковая адаптация:</strong> Перевод интерфейсов головного устройства (ГШУ), приборной панели и проекционного дисплея (HUD) на русский и казахский языки.</li>
-                    <li><strong>Сетевая интеграция:</strong> Инструкции по настройке встроенных SIM-карт местных операторов (Tele2, Beeline, Kcell) для доступа к 4G/LTE.</li>
-                    <li><strong>Навигационные сервисы:</strong> Установка и оптимизация карт Яндекс.Навигатор, 2GIS и Google Maps с корректной работой GPS/ГЛОНАСС модулей.</li>
-                    <li><strong>Мультимедиа и приложения:</strong> Интеграция онлайн-радио, видеосервисов (YouTube), музыкальных платформ (Spotify, Yandex Music) и голосовых ассистентов.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>2. Подробный каталог автомобильных марок</h2>
-
-                <h3>2.1. Changan</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Модель</th>
-                                <th>Тип кузова / Сегмент</th>
-                                <th>Тип двигателя</th>
-                                <th>Особенности локализации ПО</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Changan UNI-K</td><td>Среднеразмерный кроссовер</td><td>2.0 Turbo (Бензин)</td><td>Русификация приборной панели, адаптация сенсорных климатических меню.</td></tr>
-                            <tr><td>Changan UNI-V</td><td>Лифтбек / Спорт-седан</td><td>1.5T / 2.0T (Бензин)</td><td>Калибровка отображения активного спойлера и голосовых команд.</td></tr>
-                            <tr><td>Changan UNI-T</td><td>Компактный кроссовер</td><td>1.5 Turbo (Бензин)</td><td>Перевод системы ассистентов вождения (ADAS) и мультимедиа.</td></tr>
-                            <tr><td>Changan CS55 Plus</td><td>Компактный кроссовер</td><td>1.5 Turbo (Бензин)</td><td>Установка сторонних приложений, настройка мобильного интернета.</td></tr>
-                            <tr><td>Changan CS75 Plus</td><td>Среднеразмерный кроссовер</td><td>1.5T / 2.0T (Бензин)</td><td>Полная прошивка мультимедиа с поддержкой Яндекс.Навигатора.</td></tr>
-                            <tr><td>Changan CS35 Plus</td><td>Subcompact SUV</td><td>1.4 Turbo (Бензин)</td><td>Русификация меню головного устройства и радио-частот РК.</td></tr>
-                            <tr><td>Changan Deepal SL03 / S7</td><td>Седан / Кроссовер (PHEV/EV)</td><td>Электро / Гибрид</td><td>Адаптация графического интерфейса и интеграция систем связи РК.</td></tr>
-                            <tr><td>Changan Avatr 11 / 12</td><td>Премиум EV</td><td>Электро</td><td>Перевод мультимедиа-комплекса HarmonyOS, установка карт РК.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>2.2. Chery</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Модель</th>
-                                <th>Тип кузова / Сегмент</th>
-                                <th>Тип двигателя</th>
-                                <th>Особенности локализации ПО</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Chery Tiggo 8 Pro / Max</td><td>7-местный кроссовер</td><td>2.0 Turbo (AWD)</td><td>Адаптация двойного сдвоенного экрана, перевод меню проекции.</td></tr>
-                            <tr><td>Chery Tiggo 7 Pro Max</td><td>Компактный кроссовер</td><td>1.5T / 1.6T (Бензин)</td><td>Настройка Apple CarPlay / Android Auto и голосового управления.</td></tr>
-                            <tr><td>Chery Tiggo 4 Pro</td><td>Городской кроссовер</td><td>1.5 L / 1.5T (Бензин)</td><td>Базовая русификация и установка навигационных систем.</td></tr>
-                            <tr><td>Chery Arrizo 8</td><td>Бизнес-седан (D-класс)</td><td>1.6T / 2.0T (Бензин)</td><td>Локализация интерфейса мультимедиа и систем помощи водителю.</td></tr>
-                            <tr><td>Chery Omoda C5</td><td>Фастбэк-кроссовер</td><td>1.5T / 1.6T (FWD/AWD)</td><td>Интеграция приложений и русификация виртуальной приборной панели.</td></tr>
-                            <tr><td>Chery Jaecoo J7 / J8</td><td>Внедорожный кроссовер</td><td>1.6T / 2.0T (AWD)</td><td>Адаптация вертикального планшета и настройки оффроуд-режимов.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>2.3. Haval</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Модель</th>
-                                <th>Тип кузова / Сегмент</th>
-                                <th>Тип двигателя</th>
-                                <th>Особенности локализации ПО</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Haval Jolion</td><td>Компактный кроссовер</td><td>1.5 Turbo (FWD/AWD)</td><td>Адаптация интерфейса климат-контроля и подогрева зеркал/кресел.</td></tr>
-                            <tr><td>Haval Dargo / Big Dog</td><td>Внедорожный кроссовер</td><td>2.0 Turbo (AWD)</td><td>Русификация оффроуд-режимов и цифровой приборной панели.</td></tr>
-                            <tr><td>Haval H6 (3rd Gen)</td><td>Среднеразмерный кроссовер</td><td>1.5T / 2.0T (Бензин)</td><td>Адаптация проекционного экрана (HUD) и установка карт Казахстана.</td></tr>
-                            <tr><td>Haval H9</td><td>Рамный внедорожник</td><td>2.0T (Бензин / Дизель)</td><td>Перевод систем управления блокировками и мультимедийного блока.</td></tr>
-                            <tr><td>Haval M6</td><td>Семейный кроссовер</td><td>1.5 Turbo (Бензин)</td><td>Установка мультимедийного ПО с поддержкой локальных карт.</td></tr>
-                            <tr><td>GWM Tank 300 / 500</td><td>Премиум внедорожники</td><td>2.0T / 3.0T V6 (AWD)</td><td>Полная локализация интерфейса, блокировок, климата и мультимедиа.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>2.4. Jetour</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Модель</th>
-                                <th>Тип кузова / Сегмент</th>
-                                <th>Тип двигателя</th>
-                                <th>Особенности локализации ПО</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Jetour T2 (Traveler)</td><td>Внедорожный кроссовер</td><td>2.0 Turbo (AWD)</td><td>Полная прошивка центрального планшета Qualcomm Snapdragon 8155.</td></tr>
-                            <tr><td>Jetour Dashing</td><td>Молодежный кроссовер</td><td>1.5T / 1.6T (Бензин)</td><td>Перевод минималистичного меню управления без физических кнопок.</td></tr>
-                            <tr><td>Jetour X70 / X70 Plus</td><td>Среднеразмерный кроссовер</td><td>1.5T / 1.6T (Бензин)</td><td>Адаптация приборной панели и замена штатных приложений.</td></tr>
-                            <tr><td>Jetour X90 Plus</td><td>Флагманский кроссовер</td><td>1.6T / 2.0T (Бензин)</td><td>Русификация управления многозонным климат-контролем и панорамой.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>2.5. Geely</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Модель</th>
-                                <th>Тип кузова / Сегмент</th>
-                                <th>Тип двигателя</th>
-                                <th>Особенности локализации ПО</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Geely Monjaro</td><td>Флагманский кроссовер</td><td>2.0 Turbo (AWD)</td><td>Русификация всех 3-х экранов (включая экран пассажира) и HUD.</td></tr>
-                            <tr><td>Geely Tugella</td><td>Купе-кроссовер</td><td>2.0 Turbo (AWD)</td><td>Установка стороннего софта, активация Яндекс.Сервисов и YouTube.</td></tr>
-                            <tr><td>Geely Coolray</td><td>Компактный кроссовер</td><td>1.5 Turbo (Бензин)</td><td>Прошивка ГШУ, настройка навигации и голосовых команд.</td></tr>
-                            <tr><td>Geely Emgrand</td><td>Компактный седан</td><td>1.5 L (Атмосферный)</td><td>Адаптация штатного дисплея и перевод приборной панели.</td></tr>
-                            <tr><td>Geely Okavango</td><td>7-местный кроссовер</td><td>2.0 Turbo (Бензин)</td><td>Перевод интерфейса мультимедиа и интеграция локальных карт.</td></tr>
-                            <tr><td>Geely Atlas / Starray</td><td>Кроссовер нового поколения</td><td>1.5T / 2.0T (Бензин)</td><td>Адаптация вертикального экрана и интеграция Яндекс.Сервисов.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>2.6. JAC</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Модель</th>
-                                <th>Тип кузова / Сегмент</th>
-                                <th>Тип двигателя</th>
-                                <th>Особенности локализации ПО</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>JAC JS6</td><td>Среднеразмерный кроссовер</td><td>1.5 Turbo (Бензин)</td><td>Перевод двойного экрана и улучшение отзывчивости интерфейса.</td></tr>
-                            <tr><td>JAC JS4 / JS3</td><td>Компактные кроссоверы</td><td>1.5T / 1.6L (Бензин)</td><td>Адаптация штатного Android-устройства и радио.</td></tr>
-                            <tr><td>JAC J7</td><td>Лифтбек</td><td>1.5 Turbo (Бензин)</td><td>Русификация вертикального центрального планшета.</td></tr>
-                            <tr><td>JAC T8 Pro / T9</td><td>Рамные пикапы</td><td>2.0T (Бензин / Дизель)</td><td>Локализация бортового компьютера и навигационных систем.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>2.7. BYD (Build Your Dreams)</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Модель</th>
-                                <th>Тип кузова / Силовая установка</th>
-                                <th>Запас хода</th>
-                                <th>Особенности локализации ПО</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>BYD Song Plus (DM-i / EV)</td><td>Кроссовер (PHEV / EV)</td><td>До 1100 км (DM-i) / 505 км (EV)</td><td>Полная русификация системы DiLink, адаптация поворотного экрана.</td></tr>
-                            <tr><td>BYD Han (EV / DM-i)</td><td>Бизнес-седан E-класса</td><td>До 715 км (EV)</td><td>Перевод приборной панели, проекции и настройка eSIM/4G.</td></tr>
-                            <tr><td>BYD Tang (EV / DM-i)</td><td>7-местный кроссовер</td><td>До 730 км (EV)</td><td>Адаптация климатической системы и управление голосовым помощником.</td></tr>
-                            <tr><td>BYD Seal</td><td>Спортивный седан</td><td>До 650 км (EV)</td><td>Установка сервисов Google/Яндекс, перевод спортивных режимов.</td></tr>
-                            <tr><td>BYD Qin Plus (DM-i)</td><td>Компактный гибридный седан</td><td>До 1245 км (Комбинированный)</td><td>Адаптация бортового компьютера и отображения расхода топлива/батареи.</td></tr>
-                            <tr><td>BYD Yuan Plus (Atto 3)</td><td>Компактный электро-кроссовер</td><td>До 510 км (EV)</td><td>Перевод оригинального интерфейса DiLink и установка приложений.</td></tr>
-                            <tr><td>BYD Leopard 5 (FangChengBao)</td><td>Внедорожник PHEV</td><td>До 1200 км (Комбинированный)</td><td>Локализация сложных внедорожных интерфейсов и голосового управления.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>3. Технический процесс установки</h2>
-                <ol class="styled-list" style="list-style-type: decimal;">
-                    <li><strong>Получение активатора:</strong> После покупки вы получаете заархивированный файл и лицензию под ваш VIN.</li>
-                    <li><strong>Запись на USB:</strong> Форматируете обычную флешку в FAT32/exFAT и копируете туда полученные файлы.</li>
-                    <li><strong>Подключение к авто:</strong> Вставляете USB-флешку в штатный разъем автомобиля (обычно под консолью или в подлокотнике).</li>
-                    <li><strong>Автоматическая прошивка:</strong> Нажимаете кнопку подтверждения на экране, процесс занимает от 10 до 15 минут.</li>
-                </ol>
-            </div>
-        </div>
-
-        <!-- Вкладка 3: О прошивке -->
-        <div id="features" class="tab-content">
-            <div class="card">
-                <h2>⚡ Подробные возможности по брендам</h2>
-                
-                <div style="margin-bottom: 16px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">
-                    <h3 style="color: var(--accent-red); font-size: 15px; margin-bottom: 6px;">🔴 Changan (UNI-K, UNI-V, CS55+, Deepal, Avatr)</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Перевод приборной панели и экрана. Вывод стрелок навигации перед глазами водителя. Голосовой помощник на казахском и русском. Установка 2GIS, Яндекс, YouTube.</p>
-                </div>
-
-                <div style="margin-bottom: 16px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">
-                    <h3 style="color: var(--accent-red); font-size: 15px; margin-bottom: 6px;">🔵 Geely (Monjaro, Tugella, Coolray, Atlas)</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Прошивка всех трех экранов Монжаро. Видео в движении для пассажира. Сохранение памяти подогревов сидений и руля после глушения двигателя.</p>
-                </div>
-
-                <div style="margin-bottom: 16px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">
-                    <h3 style="color: var(--accent-red); font-size: 15px; margin-bottom: 6px;">⚪ Chery & Omoda & Jaecoo (Tiggo 8/7, Arrizo)</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Корректный перевод двойного изогнутого экрана. Установка магазина приложений Rustore/APKPure. Навигация со звуком без заглушения музыки.</p>
-                </div>
-
-                <div style="margin-bottom: 16px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">
-                    <h3 style="color: var(--accent-red); font-size: 15px; margin-bottom: 6px;">🟢 Haval & Tank (Jolion, Dargo, Tank 300/500)</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Русификация внедорожных режимов 4WD и систем блокировок. Исправление задержек Bluetooth. Беспроводной CarPlay.</p>
-                </div>
-
-                <div>
-                    <h3 style="color: var(--accent-red); font-size: 15px; margin-bottom: 6px;">🟡 BYD (Song Plus, Han, Tang, Seal, Leopard)</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Удаление китайских сервисов. Установка Google Play Services, YouTube, Waze. Автоматический поворот экрана (Horiz/Vert) с адаптацией меню.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>📊 Сравнение Пакетов ПО</h2>
-                <div class="table-responsive">
-                    <table class="pkg-table">
-                        <thead>
-                            <tr>
-                                <th>Функция</th>
-                                <th>Full</th>
-                                <th>KZ</th>
-                                <th>RU</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Перевод меню и щитка</td>
-                                <td><span class="tag-yes">KZ/RU</span></td>
-                                <td><span class="tag-yes">KZ</span></td>
-                                <td><span class="tag-yes">RU</span></td>
-                            </tr>
-                            <tr>
-                                <td>Голосовой помощник</td>
-                                <td><span class="tag-yes">✓</span></td>
-                                <td><span class="tag-yes">✓</span></td>
-                                <td><span class="tag-no">✗</span></td>
-                            </tr>
-                            <tr>
-                                <td>Яндекс.Навигатор / 2GIS</td>
-                                <td><span class="tag-yes">✓</span></td>
-                                <td><span class="tag-yes">✓</span></td>
-                                <td><span class="tag-yes">✓</span></td>
-                            </tr>
-                            <tr>
-                                <td>YouTube / Music / ТВ</td>
-                                <td><span class="tag-yes">✓</span></td>
-                                <td><span class="tag-yes">✓</span></td>
-                                <td><span class="tag-yes">✓</span></td>
-                            </tr>
-                            <tr>
-                                <td>Бесплатные обновления</td>
-                                <td><span class="tag-yes">1 год</span></td>
-                                <td><span class="tag-yes">1 год</span></td>
-                                <td><span class="tag-yes">6 мес</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Вкладка 4: FAQ и Отзывы -->
-        <div id="faq" class="tab-content">
-            <div class="card">
-                <h2>❓ Часто задаваемые вопросы (FAQ)</h2>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">Смогу ли я установить прошивку самостоятельно? <span>+</span></div>
-                    <div class="faq-answer">Да! Все наши файлы прошивок максимально автоматизированы. Вы получаете детальную пошаговую инструкцию и видеоурок. Всё, что требуется — просто вставить флешку в авто. Каждый сам себе хозяин!</div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">Теряется ли гарантия у автодилера? <span>+</span></div>
-                    <div class="faq-answer">Нет! Установка производится безопасным программным способом без вскрытия панелей. При желании вы можете легко откатить систему в заводской сток за 5 минут.</div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">Как быстро я получу файл после оплаты? <span>+</span></div>
-                    <div class="faq-answer">Сразу после отправки чека об оплате и VIN-кода в WhatsApp или Telegram, сервер подготавливает файл лицензии. Обычно отправка занимает от 10 до 30 минут.</div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">Как работают обновления ПО? <span>+</span></div>
-                    <div class="faq-answer">Все последующие патчи и обновления отправляются вам личным сообщением в мессенджер или доступны для загрузки через авто-апдейтер.</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>💬 Отзывы автовладельцев</h2>
-                
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="review-author">Арман (г. Караганда) — Changan UNI-K</span>
-                        <span class="review-stars">★★★★★</span>
-                    </div>
-                    <div class="review-text">«Купил активацию, скинули файл на ватсап. Скинул на обычную флешку, вставил и через 10 минут машина на русском и казахском языках! Очень удобно, что не надо никуда ехать!»</div>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="review-author">Максим (г. Астана) — Geely Monjaro</span>
-                        <span class="review-stars">★★★★★</span>
-                    </div>
-                    <div class="review-text">«Написал в Телеграм, оплатил и получил прошивку на 3 экрана. Сам всё обновил за вечер, никаких проблем. Яндекс навигатор с камерами работает отлично.»</div>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="review-author">Данияр (г. Алматы) — BYD Song Plus DM-i</span>
-                        <span class="review-stars">★★★★★</span>
-                    </div>
-                    <div class="review-text">«Прошивка DiLink прошла гладко. Поставил Google Play и YouTube. Спасибо за подробные инструкции!»</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Вкладка 5: Оплата -->
-        <div id="pay" class="tab-content">
-            <div class="card">
-                <h2>💳 Реквизиты для оплаты</h2>
-                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Оплата производится официально. После перевода отправьте чек в WhatsApp или Telegram для мгновенной генерации активации по VIN.</p>
-
-                <div class="bank-card">
-                    <div class="bank-header">
-                        <span class="bank-name kaspi-color">🔴 Kaspi Bank</span>
-                        <button class="copy-btn" onclick="copyNum('4400430200011614', 'Kaspi')">Скопировать</button>
-                    </div>
-                    <div class="card-num">4400 4302 0001 1614</div>
-                    <a href="https://kaspi.kz/pay" target="_blank" class="btn-kaspi">Открыть Kaspi.kz</a>
-                </div>
-
-                <div class="bank-card">
-                    <div class="bank-header">
-                        <span class="bank-name freedom-color">🟢 Freedom Bank</span>
-                        <button class="copy-btn" onclick="copyNum('4002890032882171', 'Freedom')">Скопировать</button>
-                    </div>
-                    <div class="card-num">4002 8900 3288 2171</div>
-                </div>
-            </div>
-        </div>
-
+      <div class="stats">
+        <div class="stat"><strong>7+</strong><small>марок автомобилей</small></div>
+        <div class="stat"><strong>VIN</strong><small>индивидуальная активация</small></div>
+        <div class="stat"><strong>24/7</strong><small>приём заявок</small></div>
+        <div class="stat"><strong>RU / KZ</strong><small>языковая локализация</small></div>
+      </div>
     </div>
+  </section>
 
-    <!-- Модальное окно -->
-    <div class="modal" id="payModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 style="margin-bottom: 15px;">Детали заказа и активация</h2>
-            
-            <div class="summary-row"><span>Автомобиль:</span> <strong id="summaryCar" style="color: #fff;">-</strong></div>
-            <div class="summary-row"><span>Пакет ПО:</span> <strong id="summaryPkg" style="color: #fff;">-</strong></div>
-            <div class="summary-row"><span>VIN-код:</span> <strong id="summaryVin" style="color: #fff;">-</strong></div>
-            <div class="summary-total"><span>К оплате:</span> <span id="summaryPrice" style="color: var(--accent-red);">0 ₸</span></div>
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Поддерживаемые марки</h2>
+        <p>Выберите автомобиль — система автоматически подготовит нужный пакет и рассчитает стоимость.</p>
+      </div>
 
-            <div class="bank-card">
-                <div class="bank-header">
-                    <span class="bank-name kaspi-color">Kaspi Card</span>
-                    <button class="copy-btn" onclick="copyNum('4400430200011614', 'Kaspi')">Копировать</button>
-                </div>
-                <div class="card-num">4400 4302 0001 1614</div>
-                <a href="https://kaspi.kz/pay" target="_blank" class="btn-kaspi">Перейти к переводу в Kaspi</a>
-            </div>
-
-            <p style="font-size: 11px; color: var(--text-muted); margin-top: 10px; text-align: center;">После оплаты нажмите на удобный мессенджер, чтобы отправить чек и получить прошивку:</p>
-
-            <a id="waPayBtn" href="#" target="_blank" class="btn-wa">Отправить чек и VIN в WhatsApp 💬</a>
-            <a id="tgPayBtn" href="#" target="_blank" class="btn-tg">Отправить чек и VIN в Telegram ✈️</a>
-        </div>
+      <div class="brands">
+        <div class="brand"><b>CHANGAN</b><small>Локализация мультимедиа</small></div>
+        <div class="brand"><b>CHERY</b><small>Активация функций</small></div>
+        <div class="brand"><b>HAVAL</b><small>Язык и интерфейс</small></div>
+        <div class="brand"><b>JETOUR</b><small>Локализация системы</small></div>
+        <div class="brand"><b>GEELY</b><small>Активация ПО</small></div>
+        <div class="brand"><b>JAC</b><small>Русский / казахский</small></div>
+        <div class="brand"><b>BYD</b><small>Мультимедиа и функции</small></div>
+        <div class="brand"><b>+ MORE</b><small>Список расширяется</small></div>
+      </div>
     </div>
+  </section>
 
-    <footer>
-        <p>© 2026 RAVIX Activation Kazakhstan. Все права защищены.</p>
-    </footer>
+  <section id="calculator">
+    <div class="container">
+      <div class="section-head">
+        <h2>Рассчитайте заказ</h2>
+        <p>Цена зависит от марки, модели и выбранного пакета.</p>
+      </div>
 
-    <script>
-        const carData = {
-            changan: {
-                basePrice: 45000,
-                models: [
-                    { name: "Changan UNI-K", years: "2020 — 2026" },
-                    { name: "Changan UNI-V", years: "2021 — 2026" },
-                    { name: "Changan UNI-T", years: "2020 — 2026" },
-                    { name: "Changan CS55 Plus", years: "2021 — 2026" },
-                    { name: "Changan CS75 Plus", years: "2021 — 2026" },
-                    { name: "Changan CS35 Plus", years: "2021 — 2026" },
-                    { name: "Changan Deepal SL03", years: "2022 — 2026" },
-                    { name: "Changan Deepal S7", years: "2023 — 2026" },
-                    { name: "Changan Avatr 11 / 12", years: "2022 — 2026" }
-                ]
-            },
-            geely: {
-                basePrice: 48000,
-                models: [
-                    { name: "Geely Monjaro (KX11)", years: "2021 — 2026" },
-                    { name: "Geely Tugella", years: "2020 — 2026" },
-                    { name: "Geely Coolray / Belgee X50", years: "2020 — 2026" },
-                    { name: "Geely Okavango", years: "2023 — 2026" },
-                    { name: "Geely Preface", years: "2023 — 2026" },
-                    { name: "Geely Emgrand", years: "2022 — 2026" },
-                    { name: "Geely Atlas / Starray", years: "2023 — 2026" }
-                ]
-            },
-            chery: {
-                basePrice: 40000,
-                models: [
-                    { name: "Chery Tiggo 8 Pro Max", years: "2022 — 2026" },
-                    { name: "Chery Tiggo 7 Pro Max", years: "2022 — 2026" },
-                    { name: "Chery Tiggo 4 Pro", years: "2022 — 2026" },
-                    { name: "Chery Arrizo 8", years: "2023 — 2026" },
-                    { name: "Chery Omoda C5", years: "2022 — 2026" },
-                    { name: "Chery Jaecoo J7 / J8", years: "2023 — 2026" }
-                ]
-            },
-            haval: {
-                basePrice: 38000,
-                models: [
-                    { name: "Haval Jolion", years: "2021 — 2026" },
-                    { name: "Haval Dargo", years: "2022 — 2026" },
-                    { name: "Haval H6 (3rd Gen)", years: "2021 — 2026" },
-                    { name: "Haval H9", years: "2020 — 2026" },
-                    { name: "Haval F7 / F7x", years: "2020 — 2026" },
-                    { name: "Haval M6", years: "2023 — 2026" },
-                    { name: "GWM Tank 300", years: "2023 — 2026" },
-                    { name: "GWM Tank 500", years: "2023 — 2026" }
-                ]
-            },
-            jetour: {
-                basePrice: 42000,
-                models: [
-                    { name: "Jetour T2 (Traveler)", years: "2023 — 2026" },
-                    { name: "Jetour Dashing", years: "2022 — 2026" },
-                    { name: "Jetour X70 / X70 Plus", years: "2021 — 2026" },
-                    { name: "Jetour X90 Plus", years: "2021 — 2026" }
-                ]
-            },
-            jac: {
-                basePrice: 35000,
-                models: [
-                    { name: "JAC JS6", years: "2022 — 2026" },
-                    { name: "JAC JS4 / JS3", years: "2021 — 2026" },
-                    { name: "JAC J7", years: "2020 — 2026" },
-                    { name: "JAC T8 Pro / T9", years: "2022 — 2026" }
-                ]
-            },
-            byd: {
-                basePrice: 55000,
-                models: [
-                    { name: "BYD Song Plus DM-i / EV", years: "2021 — 2026" },
-                    { name: "BYD Han EV", years: "2020 — 2026" },
-                    { name: "BYD Tang EV / DM-i", years: "2021 — 2026" },
-                    { name: "BYD Yuan Plus (Atto 3)", years: "2022 — 2026" },
-                    { name: "BYD Seal", years: "2022 — 2026" },
-                    { name: "BYD Qin Plus DM-i", years: "2021 — 2026" },
-                    { name: "BYD Chazor (Destroyer 05)", years: "2022 — 2026" },
-                    { name: "BYD Leopard 5 (FangChengBao)", years: "2023 — 2026" }
-                ]
-            }
-        };
+      <div class="calculator">
+        <div class="form">
+          <h3>Конфигуратор</h3>
+          <p>Заполните несколько полей — итог появится справа.</p>
 
-        function switchTab(tabId, element) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            element.classList.add('active');
-        }
+          <label for="brand">Марка</label>
+          <select id="brand">
+            <option value="0">Выберите марку</option>
+            <option value="25000">CHANGAN</option>
+            <option value="28000">CHERY</option>
+            <option value="30000">HAVAL</option>
+            <option value="27000">JETOUR</option>
+            <option value="32000">GEELY</option>
+            <option value="24000">JAC</option>
+            <option value="35000">BYD</option>
+          </select>
 
-        function updateModels() {
-            const brand = document.getElementById('brand').value;
-            const modelSelect = document.getElementById('model');
-            modelSelect.innerHTML = '<option value="">-- Выберите модель --</option>';
-            document.getElementById('carPreview').style.display = 'none';
+          <label for="model">Модель</label>
+          <input id="model" type="text" placeholder="Например: Uni-V, Tiggo 8 Pro">
 
-            if (brand && carData[brand]) {
-                modelSelect.disabled = false;
-                carData[brand].models.forEach((m, idx) => {
-                    const opt = document.createElement('option');
-                    opt.value = idx;
-                    opt.textContent = `${m.name} (${m.years})`;
-                    modelSelect.appendChild(opt);
-                });
-            } else {
-                modelSelect.disabled = true;
-            }
-            calculatePrice();
-        }
+          <label for="package">Пакет</label>
+          <select id="package">
+            <option value="0">Выберите пакет</option>
+            <option value="0">RU — русский язык</option>
+            <option value="5000">KZ — русский + казахский</option>
+            <option value="10000">FULL — расширенный пакет</option>
+          </select>
 
-        function onModelSelect() {
-            const brand = document.getElementById('brand').value;
-            const modelIdx = document.getElementById('model').value;
-            const preview = document.getElementById('carPreview');
+          <label for="vin">VIN-код</label>
+          <input id="vin" maxlength="17" placeholder="17 символов VIN">
+        </div>
 
-            if (brand && modelIdx !== "") {
-                const item = carData[brand].models[modelIdx];
-                document.getElementById('carTitle').textContent = item.name;
-                document.getElementById('carYear').textContent = `Годы выпуска: ${item.years}`;
-                preview.style.display = 'block';
-            } else {
-                preview.style.display = 'none';
-            }
-            calculatePrice();
-        }
+        <div class="pricebox">
+          <div>
+            <small>Ориентировочная стоимость</small>
+            <div class="price" id="price">— <span>₸</span></div>
+            <div class="checks">
+              <div>Проверка конфигурации</div>
+              <div>Работа с конкретным VIN</div>
+              <div>Поддержка после заказа</div>
+            </div>
+          </div>
+          <button class="btn primary" id="orderBtn">Оформить заявку</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function calculatePrice() {
-            const brand = document.getElementById('brand').value;
-            const modelIdx = document.getElementById('model').value;
-            const pkg = document.getElementById('package').value;
-            const priceDisplay = document.getElementById('priceDisplay');
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>Просто. Понятно. RAVIX.</h2>
+        <p>Без сложных инструкций — вы отправляете данные, остальное проходит по понятному сценарию.</p>
+      </div>
 
-            if (!brand || modelIdx === "") {
-                priceDisplay.textContent = '0 ₸';
-                return 0;
-            }
+      <div class="steps">
+        <div class="step">
+          <span class="num">01 / ЗАКАЗ</span>
+          <h3>Выбираете автомобиль</h3>
+          <p>Указываете марку, модель, пакет локализации и VIN.</p>
+        </div>
+        <div class="step">
+          <span class="num">02 / ПРОВЕРКА</span>
+          <h3>Проверяем VIN</h3>
+          <p>Определяем совместимость и подтверждаем итоговую стоимость.</p>
+        </div>
+        <div class="step">
+          <span class="num">03 / АКТИВАЦИЯ</span>
+          <h3>Получаете результат</h3>
+          <p>Получаете дальнейшие инструкции и поддержку по установке.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            let price = carData[brand].basePrice;
-            if (pkg === 'kz_only' || pkg === 'ru_only') price -= 5000;
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p>Коротко отвечаем на самые частые вопросы.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Что такое VIN?</summary>
+          <p>VIN — уникальный 17-значный идентификатор автомобиля. Он нужен для проверки совместимости конкретной машины.</p>
+        </details>
+        <details>
+          <summary>Можно ли сначала узнать цену?</summary>
+          <p>Да. Используйте конфигуратор выше. Финальная цена подтверждается после проверки автомобиля.</p>
+        </details>
+        <details>
+          <summary>Подходит ли это для любой машины одной марки?</summary>
+          <p>Нет. Совместимость может зависеть от модели, года выпуска, версии мультимедиа и региона.</p>
+        </details>
+        <details>
+          <summary>Что делать после оплаты?</summary>
+          <p>После оформления заявки менеджер связывается с вами и сообщает дальнейшие шаги.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-            priceDisplay.textContent = price.toLocaleString('ru-RU') + ' ₸';
-            return price;
-        }
+  <section>
+    <div class="container">
+      <div class="cta">
+        <h2>Готовы локализовать автомобиль?</h2>
+        <p>Выберите конфигурацию и отправьте заявку. RAVIX начнёт с проверки вашего VIN.</p>
+        <a class="btn primary" href="#calculator">Начать сейчас</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-        function openPaymentModal() {
-            const brandSelect = document.getElementById('brand');
-            const modelSelect = document.getElementById('model');
-            const packageSelect = document.getElementById('package');
-            const vinInput = document.getElementById('vin').value.trim();
+<footer>
+  <div class="container footer">
+    <div>© 2026 RAVIX.KZ</div>
+    <div>Активация • Локализация • Поддержка</div>
+  </div>
+</footer>
 
-            if (!brandSelect.value || modelSelect.value === "") {
-                alert('Пожалуйста, выберите марку и модель автомобиля!');
-                return;
-            }
-            if (vinInput.length < 11) {
-                alert('Пожалуйста, введите корректный VIN-код (минимум 11 символов)!');
-                return;
-            }
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="close" id="close">×</button>
+    <h3>Заявка RAVIX</h3>
+    <p id="modalText">Заполните данные для связи.</p>
+    <label>Имя</label>
+    <input id="name" placeholder="Ваше имя">
+    <label>Телефон / WhatsApp</label>
+    <input id="phone" placeholder="+7 ___ ___ __ __">
+    <button class="btn primary" style="width:100%;margin-top:20px" id="send">Отправить заявку</button>
+  </div>
+</div>
 
-            const price = calculatePrice();
-            const brandKey = brandSelect.value;
-            const modelObj = carData[brandKey].models[modelSelect.value];
-            const carName = `${modelObj.name} (${modelObj.years})`;
-            const pkgName = packageSelect.options[packageSelect.selectedIndex].text;
-            const vinUpper = vinInput.toUpperCase();
+<script>
+  const brand = document.getElementById('brand');
+  const pack = document.getElementById('package');
+  const price = document.getElementById('price');
+  const orderBtn = document.getElementById('orderBtn');
+  const modal = document.getElementById('modal');
+  const close = document.getElementById('close');
+  const send = document.getElementById('send');
+  const model = document.getElementById('model');
+  const vin = document.getElementById('vin');
+  const modalText = document.getElementById('modalText');
 
-            document.getElementById('summaryCar').textContent = carName;
-            document.getElementById('summaryPkg').textContent = pkgName;
-            document.getElementById('summaryVin').textContent = vinUpper;
-            document.getElementById('summaryPrice').textContent = price.toLocaleString('ru-RU') + ' ₸';
+  function calculate(){
+    const total = Number(brand.value) + Number(pack.value);
+    price.innerHTML = total ? total.toLocaleString('ru-RU') + ' <span>₸</span>' : '— <span>₸</span>';
+  }
+  brand.addEventListener('change', calculate);
+  pack.addEventListener('change', calculate);
 
-            // Текст для мессенджеров
-            const textMsg = `Здравствуйте! Я оплатил прошивку RAVIX.\n\n🚗 Автомобиль: ${carName}\n📦 Пакет ПО: ${pkgName}\n🔑 VIN-код: ${vinUpper}\n💰 Сумма: ${price.toLocaleString('ru-RU')} ₸\n\nПрикрепляю чек оплаты:`;
-            const encodedMsg = encodeURIComponent(textMsg);
+  orderBtn.addEventListener('click', () => {
+    const b = brand.options[brand.selectedIndex].text;
+    const p = pack.options[pack.selectedIndex].text;
+    const v = vin.value.trim();
 
-            // Ссылка на WhatsApp (87077213460 -> +77077213460)
-            document.getElementById('waPayBtn').href = `https://wa.me/77077213460?text=${encodedMsg}`;
+    if(!brand.value || brand.value === "0"){
+      alert('Сначала выберите марку автомобиля.');
+      return;
+    }
+    if(v && v.length !== 17){
+      alert('VIN должен содержать 17 символов.');
+      return;
+    }
 
-            // Ссылка на Telegram (@dostal1ev_01)
-            document.getElementById('tgPayBtn').href = `https://t.me/dostal1ev_01?text=${encodedMsg}`;
+    modalText.textContent = `${b} • ${model.value || 'модель не указана'} • ${p}`;
+    modal.classList.add('open');
+  });
 
-            document.getElementById('payModal').style.display = 'flex';
-        }
+  close.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => {
+    if(e.target === modal) modal.classList.remove('open');
+  });
 
-        function closeModal() {
-            document.getElementById('payModal').style.display = 'none';
-        }
+  send.addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    if(!name || !phone){
+      alert('Заполните имя и телефон.');
+      return;
+    }
+    alert('Заявка подготовлена. Подключите WhatsApp/Telegram или ваш backend в этом месте.');
+    modal.classList.remove('open');
+  });
 
-        function copyNum(card, bank) {
-            navigator.clipboard.writeText(card).then(() => {
-                alert(`Номер карты ${bank} скопирован в буфер обмена!`);
-            });
-        }
+  vin.addEventListener('input', () => {
+    vin.value = vin.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,17);
+  });
+</script>
 
-        function toggleFaq(element) {
-            const answer = element.nextElementSibling;
-            const span = element.querySelector('span');
-            if (answer.style.display === 'block') {
-                answer.style.display = 'none';
-                span.textContent = '+';
-            } else {
-                answer.style.display = 'block';
-                span.textContent = '−';
-            }
-        }
-    </script>
 </body>
 </html>
+'''
+
+path = Path("/mnt/data/ravix.html")
+path.write_text(html, encoding="utf-8")
+print(f"Готово: {path}")

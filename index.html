@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVIX Activation — Премиальная локализация авто в Казахстане</title>
+    <title>RAVIX Activation — Премиальная локализация и русификация авто в Казахстане</title>
     <style>
         :root {
             --bg-dark: #0a0a0c;
@@ -11,71 +11,95 @@
             --card-border: #262630;
             --accent-red: #e11d48;
             --accent-red-hover: #f43f5e;
-            --accent-red-glow: rgba(225, 29, 72, 0.3);
+            --accent-red-glow: rgba(225, 29, 72, 0.35);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --gold-accent: #f59e0b;
+            --green-accent: #22c55e;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: 40px; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: 20px; }
 
-        /* Header & Navigation */
+        /* Header Navigation */
         header { background: rgba(10, 10, 12, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--card-border); backdrop-filter: blur(10px); }
-        .nav-container { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
-        .logo { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-container { max-width: 600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; }
+        .logo { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
         .logo span { color: var(--accent-red); }
 
-        nav { display: flex; gap: 8px; overflow-x: auto; padding: 10px 16px; max-width: 800px; margin: 0 auto; scrollbar-width: none; }
-        nav::-webkit-scrollbar { display: none; }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 20px; white-space: nowrap; background: #181820; border: 1px solid var(--card-border); transition: all 0.2s; cursor: pointer; }
-        .nav-link.active, .nav-link:hover { color: #fff; background: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 12px var(--accent-red-glow); }
+        nav { display: flex; gap: 6px; padding: 10px 16px; max-width: 600px; margin: 0 auto; overflow-x: auto; }
+        .nav-link { flex: 1; text-align: center; color: var(--text-muted); text-decoration: none; font-size: 12px; font-weight: 600; padding: 10px 6px; border-radius: 12px; background: #141419; border: 1px solid var(--card-border); transition: all 0.2s; cursor: pointer; white-space: nowrap; }
+        .nav-link.active { color: #fff; background: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 12px var(--accent-red-glow); }
 
-        .container { max-width: 800px; margin: 20px auto; padding: 0 16px; }
+        .container { max-width: 600px; margin: 15px auto; padding: 0 16px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Hero & Banner */
-        .hero { background: linear-gradient(135deg, #1f080c 0%, #0a0a0c 100%); border: 1px solid #3f0e18; border-radius: 20px; padding: 25px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(225, 29, 72, 0.15); }
-        .hero h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: #fff; }
+        /* Hero Banner */
+        .hero { background: linear-gradient(135deg, #24080e 0%, #0a0a0c 100%); border: 1px solid #4a101d; border-radius: 20px; padding: 22px 18px; text-align: center; margin-bottom: 18px; box-shadow: 0 10px 30px rgba(225, 29, 72, 0.15); }
+        .hero h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; color: #fff; }
         .hero h1 span { color: var(--accent-red); }
         .hero p { color: var(--text-muted); font-size: 13px; }
 
-        /* Cards & Styling */
-        .card { background: var(--card-bg); border-radius: 18px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        h2 { font-size: 18px; margin-bottom: 16px; color: #fff; display: flex; align-items: center; gap: 8px; border-left: 4px solid var(--accent-red); padding-left: 10px; }
+        /* Card Styling */
+        .card { background: var(--card-bg); border-radius: 18px; padding: 20px; margin-bottom: 18px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        h2 { font-size: 17px; margin-bottom: 16px; color: #fff; display: flex; align-items: center; gap: 8px; border-left: 4px solid var(--accent-red); padding-left: 10px; }
+        h3 { font-size: 15px; margin: 14px 0 8px 0; color: var(--gold-accent); }
 
         label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
         select, input { width: 100%; padding: 13px 15px; border-radius: 12px; border: 1px solid var(--card-border); background: #0c0c10; color: #fff; font-size: 14px; margin-bottom: 14px; outline: none; transition: all 0.2s; }
         select:focus, input:focus { border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
 
-        .price-box { background: linear-gradient(135deg, #2b0910 0%, #150508 100%); border: 1px solid #52111f; padding: 18px; border-radius: 14px; text-align: center; margin-bottom: 16px; }
+        /* Dynamic Car Preview Card */
+        .car-preview { display: none; background: #0a0a0e; border: 1px solid var(--accent-red); border-radius: 14px; overflow: hidden; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+        .car-preview img { width: 100%; height: 210px; object-fit: cover; display: block; }
+        .car-preview-info { padding: 12px 15px; }
+        .car-preview-title { font-size: 16px; font-weight: 800; color: #fff; }
+        .car-preview-year { font-size: 13px; color: var(--accent-red); font-weight: 700; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Price & Buttons */
+        .price-box { background: linear-gradient(135deg, #2b0910 0%, #150508 100%); border: 1px solid #52111f; padding: 16px; border-radius: 14px; text-align: center; margin-bottom: 16px; }
         .price-title { font-size: 11px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; }
         .price-value { font-size: 28px; font-weight: 900; color: #fff; margin-top: 2px; }
 
         .btn-main { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #e11d48 0%, #be123c 100%); color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-shadow: 0 4px 15px var(--accent-red-glow); text-decoration: none; }
         .btn-main:hover { background: var(--accent-red-hover); transform: translateY(-1px); }
 
-        /* Car Gallery Grid */
-        .car-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 15px; }
-        .car-card { background: #0f0f14; border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; transition: all 0.2s; cursor: pointer; }
-        .car-card:hover { border-color: var(--accent-red); transform: translateY(-3px); }
-        .car-card img { width: 100%; height: 130px; object-fit: cover; }
-        .car-info { padding: 12px; }
-        .car-title { font-size: 15px; font-weight: 700; color: #fff; }
-        .car-years { font-size: 12px; color: var(--accent-red); font-weight: 600; margin-top: 2px; }
-        .car-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+        /* Feature List & Badges */
+        .feature-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #cbd5e1; margin-bottom: 12px; line-height: 1.4; }
+        .check-icon { color: var(--accent-red); font-weight: bold; font-size: 15px; }
+        
+        .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .badge-card { background: #0c0c10; border: 1px solid var(--card-border); padding: 12px; border-radius: 12px; text-align: center; }
+        .badge-card .num { font-size: 18px; font-weight: 800; color: var(--accent-red); }
+        .badge-card .txt { font-size: 11px; color: var(--text-muted); }
 
-        /* Features List */
-        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
-        .feature-box { background: #0f0f14; border: 1px solid var(--card-border); padding: 14px; border-radius: 12px; }
-        .feature-icon { font-size: 20px; margin-bottom: 6px; }
-        .feature-title { font-size: 13px; font-weight: 700; color: #fff; }
-        .feature-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+        /* Comparison Table */
+        .pkg-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+        .pkg-table th, .pkg-table td { padding: 10px; border: 1px solid var(--card-border); text-align: center; }
+        .pkg-table th { background: #0c0c10; color: var(--text-muted); font-weight: 700; }
+        .pkg-table td:first-child { text-align: left; color: #fff; font-weight: 600; }
+        .tag-yes { color: var(--green-accent); font-weight: bold; }
+        .tag-no { color: #64748b; }
+
+        /* FAQ Accordion */
+        .faq-item { border-bottom: 1px solid var(--card-border); padding: 12px 0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { font-size: 14px; font-weight: 700; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { font-size: 13px; color: var(--text-muted); margin-top: 8px; display: none; line-height: 1.5; }
+
+        /* Reviews */
+        .review-card { background: #0c0c10; border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .review-author { font-size: 13px; font-weight: 700; color: #fff; }
+        .review-stars { color: var(--gold-accent); font-size: 12px; }
+        .review-text { font-size: 12px; color: var(--text-muted); font-style: italic; }
 
         /* Modal / Payment Window */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 1000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(5px); }
-        .modal-content { background: #121218; border-radius: 20px; padding: 24px; max-width: 440px; width: 100%; border: 1px solid var(--accent-red); position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-content { background: #121218; border-radius: 20px; padding: 22px; max-width: 440px; width: 100%; border: 1px solid var(--accent-red); position: relative; max-height: 90vh; overflow-y: auto; }
         .close-btn { position: absolute; top: 15px; right: 18px; color: var(--text-muted); font-size: 22px; cursor: pointer; }
         .summary-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: var(--text-muted); }
         .summary-total { display: flex; justify-content: space-between; font-size: 17px; font-weight: 800; color: #fff; border-top: 1px solid var(--card-border); padding-top: 12px; margin-top: 12px; margin-bottom: 16px; }
@@ -91,6 +115,8 @@
 
         .btn-kaspi { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #f2522e; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; display: block; text-align: center; text-decoration: none; }
         .btn-wa { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #25d366; background: transparent; color: #25d366; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; display: block; text-align: center; text-decoration: none; }
+
+        footer { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 30px; padding: 0 16px; }
     </style>
 </head>
 <body>
@@ -98,59 +124,79 @@
     <header>
         <div class="nav-container">
             <a href="#" class="logo">RAVIX<span>.KZ</span></a>
-            <span style="font-size: 11px; color: var(--gold-accent); font-weight: 700; border: 1px solid var(--gold-accent); padding: 2px 8px; border-radius: 10px;">PREMIUM</span>
+            <span style="font-size: 10px; color: var(--gold-accent); font-weight: 700; border: 1px solid var(--gold-accent); padding: 2px 8px; border-radius: 10px;">PREMIUM</span>
         </div>
         <nav>
-            <div class="nav-link active" onclick="switchTab('home', this)">Главная</div>
-            <div class="nav-link" onclick="switchTab('cars', this)">Поколения авто 🚘</div>
-            <div class="nav-link" onclick="switchTab('features', this)">Что входит ⚡</div>
+            <div class="nav-link active" onclick="switchTab('home', this)">Конфигуратор ⚙️</div>
+            <div class="nav-link" onclick="switchTab('features', this)">О прошивке ⚡</div>
+            <div class="nav-link" onclick="switchTab('faq', this)">FAQ & Отзывы 💬</div>
             <div class="nav-link" onclick="switchTab('pay', this)">Оплата 💳</div>
         </nav>
     </header>
 
     <div class="container">
 
-        <!-- Вкладка: Главная -->
+        <!-- Вкладка 1: Главный конфигуратор -->
         <div id="home" class="tab-content active">
             <div class="hero">
                 <h1>Активация & Локализация <span>RAVIX</span></h1>
-                <p>Полный перевод мультимедиа, приборных панелей и казахская голосовая озвучка для авто из Китая 🇰🇿 🇷🇺</p>
+                <p>Профессиональная прошивка мультимедиа и приборных панелей китайских авто в Казахстане 🇰🇿 🇷🇺</p>
+            </div>
+
+            <div class="badge-grid">
+                <div class="badge-card">
+                    <div class="num">1500+</div>
+                    <div class="txt">Прошитых авто</div>
+                </div>
+                <div class="badge-card">
+                    <div class="num">100%</div>
+                    <div class="txt">Без слёта гарантии</div>
+                </div>
             </div>
 
             <div class="card">
-                <h2>⚙️ Конфигуратор и расчёт цены</h2>
+                <h2>⚙️ Выбор автомобиля и года</h2>
                 
                 <label>1. Марка автомобиля</label>
                 <select id="brand" onchange="updateModels()">
                     <option value="">-- Выберите марку --</option>
                     <option value="changan">Changan</option>
-                    <option value="chery">Chery</option>
-                    <option value="haval">Haval</option>
                     <option value="geely">Geely</option>
-                    <option value="byd">BYD</option>
                     <option value="zeekr">Zeekr</option>
                     <option value="li">Li Auto (Lixiang)</option>
-                    <option value="voyah">Voyah</option>
+                    <option value="byd">BYD</option>
+                    <option value="haval">Haval</option>
+                    <option value="chery">Chery</option>
                     <option value="jetour">Jetour</option>
+                    <option value="voyah">Voyah</option>
                 </select>
 
-                <label>2. Модель и Год / Поколение</label>
-                <select id="model" disabled onchange="calculatePrice()">
+                <label>2. Модель и Поколение (по годам)</label>
+                <select id="model" disabled onchange="onModelSelect()">
                     <option value="">-- Сначала выберите марку --</option>
                 </select>
 
+                <!-- Фото выбранной машины по году -->
+                <div class="car-preview" id="carPreview">
+                    <img id="carImg" src="" alt="Модель авто">
+                    <div class="car-preview-info">
+                        <div class="car-preview-title" id="carTitle"></div>
+                        <div class="car-preview-year" id="carYear"></div>
+                    </div>
+                </div>
+
                 <label>3. Выбор языкового пакета</label>
                 <select id="package" onchange="calculatePrice()">
-                    <option value="full">Полный пакет (Казахский 🇰🇿 + Русский 🇷🇺 + Голос + Я.Нави)</option>
-                    <option value="kz_only">Казахский язык + Голосовой помощник 🇰🇿</option>
+                    <option value="full">Полный пакет (Казахский 🇰🇿 + Русский 🇷🇺 + Голос + Навигация)</option>
+                    <option value="kz_only">Только Казахский язык + Голосовое управление 🇰🇿</option>
                     <option value="ru_only">Только Русский язык 🇷🇺</option>
                 </select>
 
-                <label>4. VIN-код автомобиля (для защиты лицензии)</label>
+                <label>4. VIN-код автомобиля (для привязки лицензии)</label>
                 <input type="text" id="vin" placeholder="Введите 17 символов VIN..." maxlength="17" style="text-transform: uppercase;">
 
                 <div class="price-box">
-                    <div class="price-title">Итоговая стоимость</div>
+                    <div class="price-title">Стоимость активации</div>
                     <div class="price-value" id="priceDisplay">0 ₸</div>
                 </div>
 
@@ -160,86 +206,126 @@
             </div>
         </div>
 
-        <!-- Вкладка: Поколения машин с фото -->
-        <div id="cars" class="tab-content">
-            <div class="card">
-                <h2>🚘 Каталог поколений автомобилей</h2>
-                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Ориентируйтесь по внешнему виду кузова и году выпуска для выбора точной прошивки:</p>
-
-                <div class="car-grid">
-                    <div class="car-card">
-                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=500&q=80" alt="Changan UNI-K">
-                        <div class="car-info">
-                            <div class="car-title">Changan UNI-K</div>
-                            <div class="car-years">2020 — 2024 (1 Поколение)</div>
-                            <div class="car-desc">Полный перенос Android, Казахский голос, Yandex Maps.</div>
-                        </div>
-                    </div>
-
-                    <div class="car-card">
-                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=500&q=80" alt="Geely Monjaro">
-                        <div class="car-info">
-                            <div class="car-title">Geely Monjaro</div>
-                            <div class="car-years">2021 — 2024 (KX11)</div>
-                            <div class="car-desc">Прошивка 3-х экранов, Русский/Казахский язык, YouTube.</div>
-                        </div>
-                    </div>
-
-                    <div class="car-card">
-                        <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=500&q=80" alt="Zeekr 001">
-                        <div class="car-info">
-                            <div class="car-title">Zeekr 001</div>
-                            <div class="car-years">2021 — 2023 / 2024 Facelift</div>
-                            <div class="car-desc">Активация мастера-аккаунта, приложения, языки.</div>
-                        </div>
-                    </div>
-
-                    <div class="car-card">
-                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=500&q=80" alt="Li Auto L7/L8/L9">
-                        <div class="car-info">
-                            <div class="car-title">Li Auto L7 / L8 / L9</div>
-                            <div class="car-years">2022 — 2024</div>
-                            <div class="car-desc">Установка приложений, английский/русский пакет.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Вкладка: Что входит -->
+        <!-- Вкладка 2: Что входит / О прошивке -->
         <div id="features" class="tab-content">
             <div class="card">
-                <h2>⚡ Что даёт прошивка RAVIX</h2>
-                <div class="feature-grid">
-                    <div class="feature-box">
-                        <div class="feature-icon">🇰🇿</div>
-                        <div class="feature-title">Казахский язык</div>
-                        <div class="feature-sub">Полная адаптация меню и голосового помощника</div>
+                <h2>⚡ Подробные возможности RAVIX</h2>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Система RAVIX полностью адаптирует штатное программное обеспечение китайского автомобиля под казахстанский рынок.</p>
+                
+                <div class="feature-item"><span class="check-icon">✓</span> <div><strong>Полная локализация интерфейса:</strong> Перевод центрального планшета, цифровой приборной панели и проекционного дисплея (HUD).</div></div>
+                <div class="feature-item"><span class="check-icon">✓</span> <div><strong>Голосовое управление на Казахском и Русском:</strong> Управление климат-контролем, люком, окнами и навигатором голосом.</div></div>
+                <div class="feature-item"><span class="check-icon">✓</span> <div><strong>Казахстанский пакет приложений:</strong> Установка Яндекс.Навигатораз с поддержкой камер Казахстана, YouTube, Spotify, 2GIS, Telegram и Я.Музыки.</div></div>
+                <div class="feature-item"><span class="check-icon">✓</span> <div><strong>Привязка к VIN-коду:</strong> Ваша лицензия пожизненная. При обновлении штатной системы прошивка восстанавливается автоматически.</div></div>
+                <div class="feature-item"><span class="check-icon">✓</span> <div><strong>Сохранение заводских функций:</strong> Все оригинальные настройки (ADAS, автопарковка, режимы езды, круговой обзор 360°) работают без сбоев.</div></div>
+            </div>
+
+            <div class="card">
+                <h2>📊 Сравнение Пакетов</h2>
+                <table class="pkg-table">
+                    <thead>
+                        <tr>
+                            <th>Функция</th>
+                            <th>Full</th>
+                            <th>KZ</th>
+                            <th>RU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Перевод меню и ГУ</td>
+                            <td><span class="tag-yes">KZ/RU</span></td>
+                            <td><span class="tag-yes">KZ</span></td>
+                            <td><span class="tag-yes">RU</span></td>
+                        </tr>
+                        <tr>
+                            <td>Голосовой помощник</td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-no">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>Яндекс.Навигатор / 2GIS</td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Установка приложений</td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Пожизненная гарантия</td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-yes">✓</span></td>
+                            <td><span class="tag-yes">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Вкладка 3: FAQ и Отзывы -->
+        <div id="faq" class="tab-content">
+            <div class="card">
+                <h2>❓ Часто задаваемые вопросы (FAQ)</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Слетает ли дилерская гарантия? <span>+</span></div>
+                    <div class="faq-answer">Нет! Прошивка RAVIX устанавливается поверх штатной системы программным методом, без механического разбора панели и без пайки блоков. Дилерское оборудование видит прошивку как заводское ПО.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Как происходит установка, если я из другого города? <span>+</span></div>
+                    <div class="faq-answer">Мы предоставляем услугу удаленной прошивки! Вам потребуется USB-флешка и ноутбук. Наш специалист подключится дистанционно и настроит авто за 30-40 минут. Также работают филиалы в Астане, Алматы, Шымкенте и Караганде.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Зачем нужен VIN-код при заказе? <span>+</span></div>
+                    <div class="faq-answer">VIN-код нужен для генерации уникального цифрового ключа активации RAVIX. Это гарантирует, что прошивка защищена и привязана именно к вашему автомобилю навсегда.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Будет ли работать интернет в машине? <span>+</span></div>
+                    <div class="faq-answer">Да, после прошивки вы сможете раздавать Wi-Fi с мобильного телефона или использовать штатную SIM-карту автомобиля для работы всех онлайн-сервисов и карт.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💬 Отзывы клиентов</h2>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Арман (г. Астана) — Zeekr 001</span>
+                        <span class="review-stars">★★★★★</span>
                     </div>
-                    <div class="feature-box">
-                        <div class="feature-icon">🗺️</div>
-                        <div class="feature-title">Яндекс.Навигатор</div>
-                        <div class="feature-sub">Работает на проекции и приборном щитке</div>
+                    <div class="review-text">«Установил полный пакет с казахским языком. Голосовой помощник понимает отлично! Яндекс.Навигатор работает плавно, музыка через Spotify сразу подключается. Рекомендую RAVIX!»</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Данияр (г. Алматы) — Li Auto L9</span>
+                        <span class="review-stars">★★★★★</span>
                     </div>
-                    <div class="feature-box">
-                        <div class="feature-icon">🎬</div>
-                        <div class="feature-title">YouTube & TV</div>
-                        <div class="feature-sub">Просмотр видео в движении без ограничений</div>
+                    <div class="review-text">«Прошили дистанционно буквально за полчаса. Вся приборка и проекция теперь на понятном языке. Сервис на высшем уровне!»</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Ерлан (г. Караганда) — Changan UNI-K</span>
+                        <span class="review-stars">★★★★★</span>
                     </div>
-                    <div class="feature-box">
-                        <div class="feature-icon">🛡️</div>
-                        <div class="feature-title">Защита по VIN</div>
-                        <div class="feature-sub">Сохранение заводской гарантии и обновлений</div>
-                    </div>
+                    <div class="review-text">«Очень удобный конфигуратор! Оплатил через Kaspi, активировали VIN быстро. Наконец-то в машине нормальный навигатор и YouTube для детей.»</div>
                 </div>
             </div>
         </div>
 
-        <!-- Вкладка: Оплата -->
+        <!-- Вкладка 4: Оплата -->
         <div id="pay" class="tab-content">
             <div class="card">
-                <h2>💳 Способы оплаты</h2>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">Вы можете совершить прямой перевод по номеру карты с любого банка Казахстана:</p>
+                <h2>💳 Реквизиты для перевода</h2>
+                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Вы можете произвести прямую оплату по указанным реквизитам или оформить заказ через Конфигуратор.</p>
 
                 <div class="bank-card">
                     <div class="bank-header">
@@ -262,11 +348,11 @@
 
     </div>
 
-    <!-- Окно подтверждения заказа -->
+    <!-- Окно оплаты (Модальное) -->
     <div class="modal" id="payModal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 style="margin-bottom: 15px; border-left-color: var(--accent-red);">Детали заказа</h2>
+            <h2 style="margin-bottom: 15px;">Детали и оплата</h2>
             
             <div class="summary-row"><span>Автомобиль:</span> <strong id="summaryCar" style="color: #fff;">-</strong></div>
             <div class="summary-row"><span>Пакет:</span> <strong id="summaryPkg" style="color: #fff;">-</strong></div>
@@ -290,21 +376,84 @@
                 <div class="card-num">4002 8900 3288 2171</div>
             </div>
 
-            <a id="waPayBtn" href="#" target="_blank" class="btn-wa">Отправить чек в WhatsApp</a>
+            <a id="waPayBtn" href="#" target="_blank" class="btn-wa">Отправить чек и VIN в WhatsApp</a>
         </div>
     </div>
 
+    <footer>
+        <p>© 2026 RAVIX Activation Kazakhstan. Все права защищены.</p>
+        <p style="margin-top: 4px;">Премиальная локализация и программное обеспечение для китайских электромобилей и гибридов.</p>
+    </footer>
+
     <script>
         const carData = {
-            changan: { models: ["UNI-K (2020-2024)", "UNI-V (2021-2024)", "UNI-T (2020-2024)", "CS55 Plus (2021+)", "CS75 Plus (2022+)", "Deepal SL03 / S7 (2022+)"], basePrice: 45000 },
-            chery: { models: ["Tiggo 7 Pro Max (2022+)", "Tiggo 8 Pro Max (2022+)", "Arrizo 8 (2023+)"], basePrice: 40000 },
-            haval: { models: ["Jolion (2021+)", "Dargo (2022+)", "H6 (2021+)", "Tank 300 / 500 (2023+)"], basePrice: 38000 },
-            geely: { models: ["Monjaro KX11 (2021+)", "Tugella (2020+)", "Coolray / Belgee (2020+)"], basePrice: 48000 },
-            byd: { models: ["Song Plus DM-i (2021+)", "Han EV (2020+)", "Seal (2022+)"], basePrice: 55000 },
-            zeekr: { models: ["Zeekr 001 (2021-2023)", "Zeekr 001 Facelift (2024+)", "Zeekr X (2023+)", "Zeekr 007 (2024+)"], basePrice: 65000 },
-            li: { models: ["Li Auto L6 (2024+)", "Li Auto L7 (2023+)", "Li Auto L8/L9 (2022+)"], basePrice: 70000 },
-            voyah: { models: ["Voyah Free (2021+)", "Voyah Dreamer (2022+)"], basePrice: 60000 },
-            jetour: { models: ["Dashing (2022+)", "X70/X90 Plus", "T2 Traveler (2023+)"], basePrice: 42000 }
+            changan: {
+                basePrice: 45000,
+                models: [
+                    { name: "UNI-K (1 Поколение)", years: "2020 — 2024", img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" },
+                    { name: "UNI-V (1 Поколение)", years: "2021 — 2024", img: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=600&q=80" },
+                    { name: "CS55 Plus (2 Поколение)", years: "2021 — 2024", img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Deepal SL03 / S7", years: "2022 — 2024", img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            geely: {
+                basePrice: 48000,
+                models: [
+                    { name: "Monjaro KX11", years: "2021 — 2024", img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Tugella (1 Поколение)", years: "2020 — 2024", img: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Coolray / Belgee X50", years: "2020 — 2024", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            zeekr: {
+                basePrice: 65000,
+                models: [
+                    { name: "Zeekr 001 (Дорестайлинг)", years: "2021 — 2023", img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Zeekr 001 (Рестайлинг 800V)", years: "2024 — Н.В.", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Zeekr X", years: "2023 — 2024", img: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            li: {
+                basePrice: 70000,
+                models: [
+                    { name: "Li Auto L7 / L8 / L9", years: "2022 — 2024", img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Li Auto L6", years: "2024 — Н.В.", img: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            byd: {
+                basePrice: 55000,
+                models: [
+                    { name: "BYD Song Plus DM-i / EV", years: "2021 — 2024", img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" },
+                    { name: "BYD Han EV", years: "2020 — 2024", img: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            haval: {
+                basePrice: 38000,
+                models: [
+                    { name: "Haval Jolion", years: "2021 — 2024", img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Haval Dargo", years: "2022 — 2024", img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Tank 300 / Tank 500", years: "2023 — 2024", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            chery: {
+                basePrice: 40000,
+                models: [
+                    { name: "Tiggo 7 Pro Max / 8 Pro Max", years: "2022 — 2024", img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Arrizo 8", years: "2023 — 2024", img: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            jetour: {
+                basePrice: 42000,
+                models: [
+                    { name: "Jetour Dashing", years: "2022 — 2024", img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" },
+                    { name: "Jetour T2 Traveler", years: "2023 — 2024", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" }
+                ]
+            },
+            voyah: {
+                basePrice: 60000,
+                models: [
+                    { name: "Voyah Free", years: "2021 — 2024", img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" }
+                ]
+            }
         };
 
         function switchTab(tabId, element) {
@@ -318,13 +467,14 @@
             const brand = document.getElementById('brand').value;
             const modelSelect = document.getElementById('model');
             modelSelect.innerHTML = '<option value="">-- Выберите модель и год --</option>';
+            document.getElementById('carPreview').style.display = 'none';
 
             if (brand && carData[brand]) {
                 modelSelect.disabled = false;
-                carData[brand].models.forEach(m => {
+                carData[brand].models.forEach((m, idx) => {
                     const opt = document.createElement('option');
-                    opt.value = m;
-                    opt.textContent = m;
+                    opt.value = idx;
+                    opt.textContent = `${m.name} (${m.years})`;
                     modelSelect.appendChild(opt);
                 });
             } else {
@@ -333,13 +483,30 @@
             calculatePrice();
         }
 
+        function onModelSelect() {
+            const brand = document.getElementById('brand').value;
+            const modelIdx = document.getElementById('model').value;
+            const preview = document.getElementById('carPreview');
+
+            if (brand && modelIdx !== "") {
+                const item = carData[brand].models[modelIdx];
+                document.getElementById('carImg').src = item.img;
+                document.getElementById('carTitle').textContent = item.name;
+                document.getElementById('carYear').textContent = `Годы выпуска: ${item.years}`;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+            calculatePrice();
+        }
+
         function calculatePrice() {
             const brand = document.getElementById('brand').value;
-            const model = document.getElementById('model').value;
+            const modelIdx = document.getElementById('model').value;
             const pkg = document.getElementById('package').value;
             const priceDisplay = document.getElementById('priceDisplay');
 
-            if (!brand || !model) {
+            if (!brand || modelIdx === "") {
                 priceDisplay.textContent = '0 ₸';
                 return 0;
             }
@@ -357,17 +524,19 @@
             const packageSelect = document.getElementById('package');
             const vinInput = document.getElementById('vin').value.trim();
 
-            if (!brandSelect.value || !modelSelect.value) {
+            if (!brandSelect.value || modelSelect.value === "") {
                 alert('Пожалуйста, выберите марку и модель автомобиля!');
                 return;
             }
             if (vinInput.length < 11) {
-                alert('Пожалуйста, введите корректный VIN-код!');
+                alert('Пожалуйста, введите корректный VIN-код (минимум 11 символов)!');
                 return;
             }
 
             const price = calculatePrice();
-            const carName = `${brandSelect.options[brandSelect.selectedIndex].text} ${modelSelect.value}`;
+            const brandKey = brandSelect.value;
+            const modelObj = carData[brandKey].models[modelSelect.value];
+            const carName = `${brandSelect.options[brandSelect.selectedIndex].text} ${modelObj.name} (${modelObj.years})`;
             const pkgName = packageSelect.options[packageSelect.selectedIndex].text;
             const vinUpper = vinInput.toUpperCase();
 
@@ -390,6 +559,18 @@
             navigator.clipboard.writeText(card).then(() => {
                 alert(`Карта ${bank} скопирована!`);
             });
+        }
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const span = element.querySelector('span');
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                span.textContent = '+';
+            } else {
+                answer.style.display = 'block';
+                span.textContent = '−';
+            }
         }
     </script>
 </body>

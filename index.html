@@ -6,86 +6,147 @@
     <title>RAVIX Activation — Локализация авто в Казахстане</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        body { background-color: #0f172a; color: #f8fafc; padding: 20px; line-height: 1.5; }
-        .header { text-align: center; margin-bottom: 25px; padding-top: 10px; }
-        .logo { font-size: 28px; font-weight: 800; color: #38bdf8; letter-spacing: 1px; }
-        .subtitle { color: #94a3b8; font-size: 13px; margin-top: 5px; }
-        .card { background: #1e293b; border-radius: 16px; padding: 20px; margin-bottom: 20px; border: 1px solid #334155; }
-        h2 { font-size: 18px; margin-bottom: 15px; color: #f1f5f9; }
-        label { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-        select, input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; font-size: 15px; margin-bottom: 15px; outline: none; }
+        body { background-color: #0f172a; color: #f8fafc; padding: 15px; line-height: 1.5; }
+        .container { max-width: 500px; margin: 0 auto; }
+        
+        .header { text-align: center; margin-bottom: 20px; padding-top: 10px; }
+        .logo { font-size: 26px; font-weight: 900; color: #38bdf8; letter-spacing: 1.5px; text-transform: uppercase; }
+        .subtitle { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+        
+        .card { background: #1e293b; border-radius: 16px; padding: 20px; margin-bottom: 16px; border: 1px solid #334155; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        h2 { font-size: 17px; margin-bottom: 15px; color: #f1f5f9; display: flex; align-items: center; gap: 8px; }
+        
+        label { display: block; font-size: 11px; color: #94a3b8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        select, input { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #334155; background: #0f172a; color: #fff; font-size: 14px; margin-bottom: 14px; outline: none; transition: border-color 0.2s; }
         select:focus, input:focus { border-color: #38bdf8; }
-        .price-box { background: #0284c7; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 15px; }
-        .price-title { font-size: 12px; text-transform: uppercase; opacity: 0.9; }
-        .price-value { font-size: 24px; font-weight: 800; margin-top: 2px; }
-        .btn-submit { width: 100%; padding: 14px; border-radius: 10px; border: none; background: #22c55e; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; }
-        .btn-submit:active { background: #16a34a; }
-        .feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #cbd5e1; margin-bottom: 10px; }
+        
+        .price-box { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 16px; border-radius: 12px; text-align: center; margin-bottom: 15px; }
+        .price-title { font-size: 11px; text-transform: uppercase; opacity: 0.9; letter-spacing: 0.5px; }
+        .price-value { font-size: 26px; font-weight: 800; margin-top: 2px; }
+        
+        .btn-pay { width: 100%; padding: 15px; border-radius: 12px; border: none; background: #f2522e; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+        .btn-pay:hover { background: #dc3812; }
+        .btn-pay:active { transform: scale(0.99); }
+        
+        .feature-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #cbd5e1; margin-bottom: 10px; }
+        .feature-item:last-child { margin-bottom: 0; }
+        .check-icon { color: #38bdf8; font-weight: bold; }
+
+        /* Modal / Payment Window */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 15px; }
+        .modal-content { background: #1e293b; border-radius: 20px; padding: 24px; max-width: 420px; width: 100%; border: 1px solid #334155; position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 18px; color: #94a3b8; font-size: 22px; cursor: pointer; }
+        .summary-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: #cbd5e1; }
+        .summary-total { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; color: #fff; border-top: 1px solid #334155; padding-top: 10px; margin-top: 10px; }
+        
+        .kaspi-info-box { background: #0f172a; border: 1px dashed #f2522e; border-radius: 12px; padding: 15px; margin-top: 15px; text-align: center; }
+        .kaspi-phone { font-size: 20px; font-weight: 800; color: #38bdf8; margin: 5px 0; }
+        .kaspi-recipient { font-size: 14px; font-weight: 600; color: #f2522e; }
+        .kaspi-note { font-size: 11px; color: #94a3b8; margin-top: 6px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="logo">RAVIX ACTIVATION</div>
-        <div class="subtitle">Локализация и прошивка китайских авто 🇰🇿 🇷🇺</div>
-    </div>
-
-    <div class="card">
-        <h2>Калькулятор активации</h2>
-        
-        <label>1. Марка автомобиля</label>
-        <select id="brand" onchange="updateModels()">
-            <option value="">-- Выберите марку --</option>
-            <option value="changan">Changan</option>
-            <option value="chery">Chery</option>
-            <option value="haval">Haval</option>
-            <option value="jetour">Jetour</option>
-            <option value="geely">Geely</option>
-            <option value="jac">JAC</option>
-            <option value="byd">BYD</option>
-        </select>
-    
-
-        <label>2. Модель</label>
-        <select id="model" disabled onchange="calculatePrice()">
-            <option value="">-- Сначала выберите марку --</option>
-        </select>
-
-        <label>3. Пакет локализации</label>
-        <select id="package" onchange="calculatePrice()">
-            <option value="full">Полный пакет (RU + KZ + Голос 🇰🇿)</option>
-            <option value="ru">Только Русский язык</option>
-            <option value="kz">Только Казахский + Голос 🇰🇿</option>
-        </select>
-
-        <label>4. VIN-код (для привязки лицензии)</label>
-        <input type="text" id="vin" placeholder="Например: LKG1234567890..." maxlength="17">
-
-        <div class="price-box">
-            <div class="price-title">Итоговая стоимость</div>
-            <div class="price-value" id="priceDisplay">0 ₸</div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">RAVIX ACTIVATION</div>
+            <div class="subtitle">Полная локализация и прошивка китайских авто 🇰🇿 🇷🇺</div>
         </div>
 
-        <button class="btn-submit" onclick="submitOrder()">Заказать активацию</button>
+        <div class="card">
+            <h2>⚙️ Конфигуратор прошивки</h2>
+            
+            <label>1. Марка автомобиля</label>
+            <select id="brand" onchange="updateModels()">
+                <option value="">-- Выберите марку --</option>
+                <option value="changan">Changan</option>
+                <option value="chery">Chery</option>
+                <option value="haval">Haval</option>
+                <option value="jetour">Jetour</option>
+                <option value="geely">Geely</option>
+                <option value="byd">BYD</option>
+                <option value="zeekr">Zeekr</option>
+                <option value="li">Li Auto (Lixiang)</option>
+                <option value="voyah">Voyah</option>
+                <option value="exeed">Exeed</option>
+                <option value="omoda">Omoda</option>
+                <option value="tank">Tank</option>
+                <option value="jac">JAC</option>
+            </select>
+
+            <label>2. Модель</label>
+            <select id="model" disabled onchange="calculatePrice()">
+                <option value="">-- Сначала выберите марку --</option>
+            </select>
+
+            <label>3. Выбор языков и пакета</label>
+            <select id="package" onchange="calculatePrice()">
+                <option value="full">Полный пакет (Казахский 🇰🇿 + Русский 🇷🇺 + Голос)</option>
+                <option value="kz_only">Только Казахский язык + Голосовое управление 🇰🇿</option>
+                <option value="ru_only">Только Русский язык 🇷🇺</option>
+                <option value="en_only">Английский / Международный пакет 🌐</option>
+            </select>
+
+            <label>4. VIN-код автомобиля (для активации лицензии)</label>
+            <input type="text" id="vin" placeholder="Введите 17 символов VIN..." maxlength="17" style="text-transform: uppercase;">
+
+            <div class="price-box">
+                <div class="price-title">Стоимость активации</div>
+                <div class="price-value" id="priceDisplay">0 ₸</div>
+            </div>
+
+            <button class="btn-pay" onclick="openPaymentModal()">
+                <span>Оплатить через Kaspi</span>
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>🛡️ Что входит в локализацию RAVIX</h2>
+            <div class="feature-item"><span class="check-icon">✓</span> Перевод приборной панели и мультимедиа</div>
+            <div class="feature-item"><span class="check-icon">✓</span> Казахская голосовая озвучка навигации и команд</div>
+            <div class="feature-item"><span class="check-icon">✓</span> Установка Yandex Maps, YouTube, Spotify, Telegram</div>
+            <div class="feature-item"><span class="check-icon">✓</span> Защита лицензии по VIN + Device ID</div>
+            <div class="feature-item"><span class="check-icon">✓</span> Сохранение заводской гарантии дилера</div>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>Преимущества RAVIX</h2>
-        <div class="feature-item">✓ Полный казахский интерфейс и озвучка</div>
-        <div class="feature-item">✓ Защита лицензии по VIN + Device ID</div>
-        <div class="feature-item">✓ Дистанционная активация за 10 минут</div>
-        <div class="feature-item">✓ Официальная гарантия и поддержка</div>
+    <!-- Модальное окно оплаты -->
+    <div class="modal" id="payModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePaymentModal()">&times;</span>
+            <h2 style="margin-bottom: 15px;">Оплата заказа</h2>
+            
+            <div class="summary-row"><span>Автомобиль:</span> <strong id="summaryCar">-</strong></div>
+            <div class="summary-row"><span>Пакет:</span> <strong id="summaryPkg">-</strong></div>
+            <div class="summary-row"><span>VIN-код:</span> <strong id="summaryVin">-</strong></div>
+            <div class="summary-total"><span>К оплате:</span> <span id="summaryPrice" style="color: #38bdf8;">0 ₸</span></div>
+
+            <div class="kaspi-info-box">
+                <div style="font-size: 12px; color: #cbd5e1;">Реквизиты для перевода Kaspi:</div>
+                <div class="kaspi-phone">+7 707 721 34 60</div>
+                <div class="kaspi-recipient">Получатель: Равиль Д.</div>
+                <div class="kaspi-note">В комментарии к переводу укажите ваш **VIN-код**</div>
+            </div>
+
+            <button class="btn-pay" style="margin-top: 15px;" onclick="closePaymentModal()">Понятно, закрыть окно</button>
+        </div>
     </div>
 
     <script>
         const carData = {
-            changan: { models: ["UNI-K", "UNI-V", "CS55 Plus", "CS75 Plus"], basePrice: 45000 },
-            chery: { models: ["Tiggo 7 Pro", "Tiggo 8 Pro Max", "Arrizo 8"], basePrice: 40000 },
-            haval: { models: ["Jolion", "F7x", "Dargo", "H9"], basePrice: 35000 },
-            jetour: { models: ["Dashing", "X70 Plus", "T2"], basePrice: 42000 },
-            geely: { models: ["Monjaro", "Tugella", "Coolray"], basePrice: 50000 },
-            jac: { models: ["JS4", "J7", "JS6"], basePrice: 35000 },
-            byd: { models: ["Song Plus", "Han", "Tang", "Chazor"], basePrice: 55000 }
+            changan: { models: ["UNI-K", "UNI-V", "UNI-T", "CS55 Plus", "CS75 Plus", "CS85 Coupe", "CS95", "Alsvin", "EADO Plus", "Hunter Plus", "Deepal SL03", "Deepal S7"], basePrice: 45000 },
+            chery: { models: ["Tiggo 4 Pro", "Tiggo 7 Pro Max", "Tiggo 8 Pro Max", "Arrizo 8", "Explore 06"], basePrice: 40000 },
+            haval: { models: ["Jolion", "F7 / F7x", "Dargo", "H6", "H9", "M6", "Raptor"], basePrice: 38000 },
+            jetour: { models: ["Dashing", "X70 Plus", "X90 Plus", "T2 (Traveler)"], basePrice: 42000 },
+            geely: { models: ["Monjaro", "Tugella", "Coolray / Belgee X50", "Atlas Pro / Azkarra", "Geometry E", "Okavango", "Emgrand"], basePrice: 48000 },
+            byd: { models: ["Song Plus DM-i / EV", "Han EV", "Tang EV", "Chazor (05)", "Seal", "Dolphin", "Yuan Plus (Atto 3)", "Leopard 5"], basePrice: 55000 },
+            zeekr: { models: ["Zeekr 001", "Zeekr 009", "Zeekr X", "Zeekr 007"], basePrice: 65000 },
+            li: { models: ["Li Auto L6", "Li Auto L7", "Li Auto L8", "Li Auto L9", "Li Auto MEGA"], basePrice: 70000 },
+            voyah: { models: ["Voyah Free", "Voyah Dreamer", "Voyah Passion"], basePrice: 60000 },
+            exeed: { models: ["TX L", "VX", "LX", "RX"], basePrice: 45000 },
+            omoda: { models: ["C5", "S5", "S5 GT"], basePrice: 38000 },
+            tank: { models: ["Tank 300", "Tank 500"], basePrice: 50000 },
+            jac: { models: ["JS4", "J7", "JS6", "T8 Pro"], basePrice: 35000 }
         };
 
         function updateModels() {
@@ -117,36 +178,47 @@
 
             if (!brandSelect || !modelSelect) {
                 priceDisplay.textContent = '0 ₸';
-                return;
+                return 0;
             }
 
             let price = carData[brandSelect].basePrice;
 
-            if (packageSelect === 'ru') price -= 5000;
-            if (packageSelect === 'kz') price -= 5000;
+            if (packageSelect === 'kz_only' || packageSelect === 'ru_only') price -= 5000;
+            if (packageSelect === 'en_only') price -= 7000;
 
             priceDisplay.textContent = price.toLocaleString('ru-RU') + ' ₸';
+            return price;
         }
 
-        function submitOrder() {
-            const brand = document.getElementById('brand').value;
-            const model = document.getElementById('model').value;
-            const vin = document.getElementById('vin').value;
+        function openPaymentModal() {
+            const brandSelect = document.getElementById('brand');
+            const modelSelect = document.getElementById('model');
+            const packageSelect = document.getElementById('package');
+            const vinInput = document.getElementById('vin').value.trim();
 
-            if (!brand || !model) {
+            if (!brandSelect.value || !modelSelect.value) {
                 alert('Пожалуйста, выберите марку и модель автомобиля!');
                 return;
             }
-            if (vin.length < 11) {
-                alert('Пожалуйста, введите корректный VIN-код!');
+            if (vinInput.length < 11) {
+                alert('Пожалуйста, введите корректный VIN-код (минимум 11 символов)!');
                 return;
             }
 
-            alert('Заявка принята! Переходим к интеграции оплаты.');
+            const currentPrice = calculatePrice();
+
+            document.getElementById('summaryCar').textContent = `${brandSelect.options[brandSelect.selectedIndex].text} ${modelSelect.value}`;
+            document.getElementById('summaryPkg').textContent = packageSelect.options[packageSelect.selectedIndex].text;
+            document.getElementById('summaryVin').textContent = vinInput.toUpperCase();
+            document.getElementById('summaryPrice').textContent = currentPrice.toLocaleString('ru-RU') + ' ₸';
+
+            document.getElementById('payModal').style.display = 'flex';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payModal').style.display = 'none';
         }
     </script>
 
 </body>
 </html>
-
-
